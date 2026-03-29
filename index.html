@@ -11,58 +11,73 @@
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <style>
         :root {
-            /* Цвета адаптированы под стилистику логотипа */
-            --m3-surface: #1c1b1f; /* Темный фон Android */
-            --m3-surface-container: #2b2930; /* Карточки чуть светлее */
-            --m3-primary: #d0bcff; /* Светло-фиолетовый (акцент как в лого) */
-            --m3-on-primary: #381e72; /* Текст на кнопке */
-            --m3-on-surface: #e6e1e5; /* Светлый текст */
-            --m3-secondary-container: #4a4458; /* Цвет при нажатии */
+            /* Новая темно-синяя палитра Material You */
+            --m3-surface: #111318; /* Глубокий темный фон */
+            --m3-surface-container: #1e2025; /* Карточки */
+            --m3-primary: #a8c7ff; /* Светло-синий акцент */
+            --m3-on-primary: #002f66; /* Текст на кнопках */
+            --m3-on-surface: #e2e2e6; /* Основной текст */
+            --m3-outline: #8e9199;
         }
 
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--m3-surface);
             color: var(--m3-on-surface);
-            margin: 0; padding: 0; display: flex; justify-content: center;
+            margin: 0; padding: 0; 
+            display: flex; justify-content: center;
+            min-height: 100vh;
         }
 
-        .container { max-width: 500px; width: 100%; padding: 24px; }
+        .container { max-width: 480px; width: 100%; padding: 24px; }
 
-        header { margin-top: 48px; margin-bottom: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        header { 
+            margin-top: 50px; margin-bottom: 40px; 
+            display: flex; flex-direction: column; align-items: center; gap: 20px; 
+        }
 
+        /* Лого с тенью и адаптивным скруглением */
         .logo { 
-            width: 110px; height: 110px; 
+            width: 100px; height: 100px; 
             object-fit: contain; 
-            border-radius: 32px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border-radius: 28px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); /* Выраженная тень */
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        h1 { font-size: 32px; font-weight: 400; margin: 0; letter-spacing: 0.5px; color: var(--m3-primary); }
+        h1 { 
+            font-size: 32px; font-weight: 500; margin: 0; 
+            letter-spacing: 0.5px; color: var(--m3-primary); 
+        }
 
-        .list { display: flex; flex-direction: column; gap: 16px; }
+        .list { display: flex; flex-direction: column; gap: 14px; }
 
         .item {
             background-color: var(--m3-surface-container);
-            border-radius: 24px; padding: 18px 24px;
+            border-radius: 24px; padding: 20px 24px;
             display: flex; justify-content: space-between; align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.2s ease;
         }
 
-        .item:active { transform: scale(0.97); background-color: var(--m3-secondary-container); }
+        /* Эффект при нажатии на карточку */
+        .item:active { transform: scale(0.96); background-color: #2a2d35; }
 
-        .label { font-size: 15px; font-weight: 500; color: var(--m3-on-surface); max-width: 65%; word-wrap: break-word; }
+        .label { font-size: 15px; font-weight: 500; color: var(--m3-on-surface); }
 
+        /* Кнопки в стиле Material 3 (Filled Tonal) */
         .btn {
             background-color: var(--m3-primary);
             color: var(--m3-on-primary);
             text-decoration: none;
-            padding: 12px 24px; border-radius: 16px;
+            padding: 12px 28px; 
+            border-radius: 100px; /* Полностью круглые кнопки M3 */
             font-size: 14px; font-weight: 700;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.2s;
         }
+
+        .btn:hover { box-shadow: 0 6px 16px rgba(168, 199, 255, 0.3); }
     </style>
 </head>
 <body>
