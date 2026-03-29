@@ -16,7 +16,6 @@
             --m3-primary: #0066ff;
             --m3-on-primary: #ffffff;
             --m3-on-surface: #e2e2e6;
-            --m3-outline: #44474f;
         }
 
         body {
@@ -35,7 +34,6 @@
             display: flex; flex-direction: column; align-items: center; gap: 20px; 
         }
 
-        /* Лого с синей тенью */
         .logo { 
             width: 100px; height: 100px; 
             object-fit: contain; 
@@ -49,7 +47,6 @@
             letter-spacing: 0.5px; color: var(--m3-primary); 
         }
 
-        /* БЛОК ИНСТРУКЦИИ (Android Style) */
         .instruction-card {
             background-color: #0a0c10;
             border: 1px solid #1e2025;
@@ -88,7 +85,6 @@
 
         .label { font-size: 15px; font-weight: 500; color: var(--m3-on-surface); }
 
-        /* Синяя кнопка */
         .btn {
             background-color: var(--m3-primary);
             color: var(--m3-on-primary);
@@ -109,20 +105,19 @@
         <h1>Hiddify</h1>
     </header>
 
-    <!-- ИНСТРУКЦИЯ -->
     <div class="instruction-card">
         <h2>Инструкция</h2>
         <div class="step">
-            1️⃣ <b>Установка:</b> Скачиваем <b>Hiddify</b> (Android/iOS). Заходим и выдаем все разрешения.
+            1️⃣ <b>Установка:</b> Скачиваем приложение <b>Hiddify</b> (есть для Android и iOS). Заходим и выдаем все разрешения.
         </div>
         <div class="step">
-            2️⃣ <b>Конфиг:</b> Нажимаем кнопку <b>"ИМПОРТ"</b> ниже или копируем ссылку.
+            2️⃣ <b>Конфиг:</b> Выберите нужный список ниже и нажмите синюю кнопку <b>"ИМПОРТ"</b>.
         </div>
         <div class="step">
-            3️⃣ <b>Настройка:</b> В приложении жмем <b>"+" (плюс)</b> сверху -> <b>"Буфер обмена"</b>.
+            3️⃣ <b>Настройка:</b> В открывшемся приложении жмем <b>"+" (плюс)</b> сверху -> <b>"Буфер обмена"</b>.
         </div>
         <div class="step">
-            4️⃣ <b>Запуск:</b> Жмем <b>"Подключиться"</b>. Снизу жмем на сервер и выбираем <b>lowest</b>.
+            4️⃣ <b>Запуск:</b> Жмем <b>"Подключиться"</b>. Когда появится задержка (мс), жмем на название сервера снизу и выбираем в списке самый верхний — <b>lowest</b>.
         </div>
         <div style="text-align:center; font-size:12px; color:#555; margin-top:10px;">
             Вопросы? Пишите нашей поддержке.
