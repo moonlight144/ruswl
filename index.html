@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hiddify</title>
     
-    <!-- Tab Icon -->
+    <!-- Иконка вкладки -->
     <link rel="icon" type="image/png" href="./logo1.png">
     
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <style>
         :root {
-            --m3-surface: #fef7ff;
-            --m3-surface-container: #f3edf7;
-            --m3-primary: #6750a4;
-            --m3-on-primary: #ffffff;
-            --m3-on-surface: #1d1b20;
-            --m3-secondary-container: #e8def8;
+            /* Цвета адаптированы под стилистику логотипа */
+            --m3-surface: #1c1b1f; /* Темный фон Android */
+            --m3-surface-container: #2b2930; /* Карточки чуть светлее */
+            --m3-primary: #d0bcff; /* Светло-фиолетовый (акцент как в лого) */
+            --m3-on-primary: #381e72; /* Текст на кнопке */
+            --m3-on-surface: #e6e1e5; /* Светлый текст */
+            --m3-secondary-container: #4a4458; /* Цвет при нажатии */
         }
 
         body {
@@ -28,17 +29,22 @@
 
         .container { max-width: 500px; width: 100%; padding: 24px; }
 
-        header { margin-top: 48px; margin-bottom: 40px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+        header { margin-top: 48px; margin-bottom: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
 
-        .logo { width: 96px; height: 96px; object-fit: contain; border-radius: 28px; }
+        .logo { 
+            width: 110px; height: 110px; 
+            object-fit: contain; 
+            border-radius: 32px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
 
-        h1 { font-size: 32px; font-weight: 400; margin: 0; letter-spacing: -0.5px; }
+        h1 { font-size: 32px; font-weight: 400; margin: 0; letter-spacing: 0.5px; color: var(--m3-primary); }
 
-        .list { display: flex; flex-direction: column; gap: 12px; }
+        .list { display: flex; flex-direction: column; gap: 16px; }
 
         .item {
             background-color: var(--m3-surface-container);
-            border-radius: 28px; padding: 16px 24px;
+            border-radius: 24px; padding: 18px 24px;
             display: flex; justify-content: space-between; align-items: center;
             transition: all 0.2s ease;
         }
@@ -51,9 +57,11 @@
             background-color: var(--m3-primary);
             color: var(--m3-on-primary);
             text-decoration: none;
-            padding: 10px 24px; border-radius: 20px;
-            font-size: 14px; font-weight: 500;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            padding: 12px 24px; border-radius: 16px;
+            font-size: 14px; font-weight: 700;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -68,27 +76,27 @@
     <div class="list">
         <div class="item">
             <span class="label">Rus Mobile 1</span>
-            <a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile.txt" class="btn">Импорт</a>
+            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
         </div>
 
         <div class="item">
             <span class="label">Rus Mobile 2</span>
-            <a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile-2.txt" class="btn">Импорт</a>
+            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
         </div>
 
         <div class="item">
             <span class="label">WHITE-CIDR-RU-all</span>
-            <a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/WHITE-CIDR-RU-all.txt" class="btn">Импорт</a>
+            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
         </div>
 
         <div class="item">
             <span class="label">WHITE-CIDR-RU-checked</span>
-            <a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/WHITE-CIDR-RU-checked.txt" class="btn">Импорт</a>
+            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
         </div>
 
         <div class="item">
             <span class="label">WHITE-SNI-RU-all</span>
-            <a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/WHITE-SNI-RU-all.txt" class="btn">Импорт</a>
+            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
         </div>
     </div>
 </div>
