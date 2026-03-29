@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hiddify</title>
-    <!-- Подключаем шрифт Google Sans / Roboto для стиля Android -->
+    
+    <!-- Favicon: Logo in the browser tab -->
+    <link rel="icon" type="image/png" href="ССЫЛКА_НА_ТВОЙ_ЛОГОТИП">
+    
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <style>
         :root {
-            /* Цвета Material You (Light Theme) */
             --m3-surface: #fef7ff;
             --m3-surface-container: #f3edf7;
             --m3-primary: #6750a4;
             --m3-on-primary: #ffffff;
             --m3-on-surface: #1d1b20;
-            --m3-on-surface-variant: #49454f;
-            --m3-outline: #79747e;
         }
 
         body {
@@ -37,41 +37,42 @@
         header {
             margin-top: 40px;
             margin-bottom: 32px;
-            padding-left: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Logo styling */
+        .logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 20px;
         }
 
         h1 {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 400;
             margin: 0;
-            color: var(--m3-on-surface);
         }
 
         .list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+            display: flex; flex-direction: column; gap: 12px;
         }
 
         .item {
             background-color: var(--m3-surface-container);
-            border-radius: 28px; /* Характерное закругление M3 */
+            border-radius: 28px;
             padding: 20px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background-color 0.2s;
-        }
-
-        .item:active {
-            background-color: #e8def8;
         }
 
         .label {
             font-size: 16px;
             font-weight: 500;
-            color: var(--m3-on-surface);
-            letter-spacing: 0.1px;
         }
 
         .btn {
@@ -82,27 +83,6 @@
             border-radius: 20px;
             font-size: 14px;
             font-weight: 500;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            transition: box-shadow 0.2s;
-        }
-
-        .btn:active {
-            box-shadow: none;
-            opacity: 0.9;
-        }
-
-        /* Декоративная иконка списка для стиля */
-        .item-info {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        
-        .dot {
-            width: 10px;
-            height: 10px;
-            background-color: var(--m3-primary);
-            border-radius: 50%;
         }
     </style>
 </head>
@@ -110,52 +90,34 @@
 
 <div class="container">
     <header>
+        <!-- Replace the URL below with your logo link -->
+        <img src="ССЫЛКА_НА_ТВОЙ_ЛОГОТИП" alt="Logo" class="logo">
         <h1>Hiddify</h1>
     </header>
 
     <div class="list">
-        <!-- Item 1 -->
         <div class="item">
-            <div class="item-info">
-                <div class="dot"></div>
-                <span class="label">Rus Mobile 1</span>
-            </div>
+            <span class="label">Rus Mobile 1</span>
             <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
         </div>
 
-        <!-- Item 2 -->
         <div class="item">
-            <div class="item-info">
-                <div class="dot"></div>
-                <span class="label">Rus Mobile 2</span>
-            </div>
+            <span class="label">Rus Mobile 2</span>
             <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
         </div>
 
-        <!-- Item 3 -->
         <div class="item">
-            <div class="item-info">
-                <div class="dot"></div>
-                <span class="label">WHITE-CIDR-RU-all</span>
-            </div>
+            <span class="label">WHITE-CIDR-RU-all</span>
             <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
         </div>
 
-        <!-- Item 4 -->
         <div class="item">
-            <div class="item-info">
-                <div class="dot"></div>
-                <span class="label">WHITE-CIDR-RU-checked</span>
-            </div>
+            <span class="label">WHITE-CIDR-RU-checked</span>
             <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
         </div>
 
-        <!-- Item 5 -->
         <div class="item">
-            <div class="item-info">
-                <div class="dot"></div>
-                <span class="label">WHITE-SNI-RU-all</span>
-            </div>
+            <span class="label">WHITE-SNI-RU-all</span>
             <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
         </div>
     </div>
@@ -163,4 +125,3 @@
 
 </body>
 </html>
-
