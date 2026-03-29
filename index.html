@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hiddify</title>
     
-    <!-- Favicon: Logo in the browser tab -->
-    <link rel="icon" type="image/png" href="ССЫЛКА_НА_ТВОЙ_ЛОГОТИП">
+    <!-- Иконка вкладки -->
+    <link rel="icon" type="image/png" href="logo1.png">
     
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <style>
@@ -16,6 +16,7 @@
             --m3-primary: #6750a4;
             --m3-on-primary: #ffffff;
             --m3-on-surface: #1d1b20;
+            --m3-secondary-container: #e8def8;
         }
 
         body {
@@ -35,44 +36,56 @@
         }
 
         header {
-            margin-top: 40px;
-            margin-bottom: 32px;
+            margin-top: 48px;
+            margin-bottom: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 16px;
         }
 
-        /* Logo styling */
+        /* Главное лого на странице */
         .logo {
-            width: 80px;
-            height: 80px;
+            width: 96px;
+            height: 96px;
             object-fit: contain;
-            border-radius: 20px;
+            border-radius: 28px; /* Стиль адаптивной иконки Android */
         }
 
         h1 {
             font-size: 32px;
             font-weight: 400;
             margin: 0;
+            letter-spacing: -0.5px;
         }
 
         .list {
-            display: flex; flex-direction: column; gap: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .item {
             background-color: var(--m3-surface-container);
             border-radius: 28px;
-            padding: 20px 24px;
+            padding: 16px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .item:active {
+            transform: scale(0.97);
+            background-color: var(--m3-secondary-container);
         }
 
         .label {
             font-size: 16px;
             font-weight: 500;
+            color: var(--m3-on-surface);
+            max-width: 60%;
+            word-wrap: break-word;
         }
 
         .btn {
@@ -83,6 +96,11 @@
             border-radius: 20px;
             font-size: 14px;
             font-weight: 500;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .btn:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
     </style>
 </head>
@@ -90,35 +108,34 @@
 
 <div class="container">
     <header>
-        <!-- Replace the URL below with your logo link -->
-        <img src="ССЫЛКА_НА_ТВОЙ_ЛОГОТИП" alt="Logo" class="logo">
+        <img src="logo.png" alt="Hiddify" class="logo">
         <h1>Hiddify</h1>
     </header>
 
     <div class="list">
         <div class="item">
             <span class="label">Rus Mobile 1</span>
-            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
+            <a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile.txt" class="btn">Импорт</a>
         </div>
 
         <div class="item">
             <span class="label">Rus Mobile 2</span>
-            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
+            <a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile-2.txt" class="btn">Импорт</a>
         </div>
 
         <div class="item">
             <span class="label">WHITE-CIDR-RU-all</span>
-            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
+            <a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/WHITE-CIDR-RU-all.txt" class="btn">Импорт</a>
         </div>
 
         <div class="item">
             <span class="label">WHITE-CIDR-RU-checked</span>
-            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
+            <a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/WHITE-CIDR-RU-checked.txt" class="btn">Импорт</a>
         </div>
 
         <div class="item">
             <span class="label">WHITE-SNI-RU-all</span>
-            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
+            <a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/WHITE-SNI-RU-all.txt" class="btn">Импорт</a>
         </div>
     </div>
 </div>
