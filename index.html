@@ -9,10 +9,9 @@
     
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <style>
-        /* ПОЛНОСТЬЮ НОВАЯ СИНЯЯ ПАЛИТРА */
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #000000; /* Чистый черный фон */
+            background-color: #000000;
             color: #ffffff;
             margin: 0;
             padding: 0;
@@ -22,61 +21,53 @@
         }
 
         .container {
-            max-width: 480px;
+            max-width: 500px;
             width: 100%;
             padding: 24px;
         }
 
         header {
-            margin-top: 50px;
-            margin-bottom: 40px;
+            margin-top: 40px;
+            margin-bottom: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
-        /* ЛОГОТИП С ЖИРНОЙ СИНЕЙ ТЕНЬЮ */
         .logo {
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
             object-fit: contain;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4); /* Синяя тень */
-            border: 2px solid #0055ff;
+            border-radius: 22px;
+            box-shadow: 0 0 25px rgba(0, 102, 255, 0.5);
+            border: 2px solid #0066ff;
         }
 
         h1 {
             font-size: 32px;
             font-weight: 700;
             margin: 0;
-            color: #0084ff; /* Ярко-синий заголовок */
-            text-transform: uppercase;
+            color: #0084ff;
             letter-spacing: 1px;
         }
 
         .list {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
+            margin-bottom: 40px;
         }
 
-        /* КАРТОЧКИ В ТЕМНО-СИНЕМ СТИЛЕ */
         .item {
-            background-color: #1a1a1a;
-            border-radius: 20px;
-            padding: 20px 24px;
+            background-color: #161616;
+            border-radius: 18px;
+            padding: 16px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid #333;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            transition: all 0.2s ease;
-        }
-
-        .item:active {
-            transform: scale(0.95);
-            background-color: #252525;
+            border: 1px solid #222;
+            transition: all 0.2s;
         }
 
         .label {
@@ -85,22 +76,58 @@
             color: #e0e0e0;
         }
 
-        /* КНОПКИ: ЯРКО-СИНИЙ ЦВЕТ */
         .btn {
-            background-color: #0066ff; /* Кнопка синяя */
+            background-color: #0066ff;
             color: #ffffff;
             text-decoration: none;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 12px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
-            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3); /* Тень кнопки */
-            transition: background 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 102, 255, 0.2);
         }
 
-        .btn:hover {
-            background-color: #0052cc;
-            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.5);
+        /* БЛОК ИНСТРУКЦИИ */
+        .instruction {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 24px;
+            padding: 24px;
+            margin-top: 20px;
+        }
+
+        .instruction h2 {
+            color: #0084ff;
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step {
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #b0b0b0;
+        }
+
+        .step b {
+            color: #ffffff;
+        }
+
+        .divider {
+            height: 1px;
+            background: #222;
+            margin: 15px 0;
+        }
+
+        .support-text {
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -138,8 +165,38 @@
             <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">ИМПОРТ</a>
         </div>
     </div>
+
+    <!-- БЛОК ИНСТРУКЦИИ -->
+    <div class="instruction">
+        <h2>Инструкция</h2>
+        
+        <div class="step">
+            1️⃣ <b>Установка:</b> Скачиваем приложение для VPN, оно называется <b>Hiddify</b>. Оно есть и для Android, и для iOS. Убеждаемся что оно установилось и ищем его на рабочем столе. Далее заходим в него и выдаём все разрешения, которые приложение просит.
+        </div>
+
+        <div class="step">
+            2️⃣ <b>Конфиг:</b> Копируем любой конфиг из списка выше (если не работает — пробуем другой) или нажимаем кнопку <b>"ИМПОРТ"</b>.
+        </div>
+
+        <div class="step">
+            3️⃣ <b>Настройка:</b> Заходим в Hiddify. Ищем сверху значок <b>плюсика</b>, жмякаем на него. Далее нажимаем кнопку <b>"Буфер обмена"</b>. Когда пройдёт подключение и вас вернёт на главный экран — вы всё правильно сделали.
+        </div>
+
+        <div class="step">
+            4️⃣ <b>Запуск:</b> Жмякаете кнопку <b>Подключиться</b>. Когда под кнопкой появится подсчёт задержки (например, 86мс), нажимаете снизу на сервер, к которому приложение подключилось. В самом верху списка жмякаете сервер под названием <b>lowest</b>.
+        </div>
+
+        <div class="divider"></div>
+        
+        <div class="step" style="color: #0084ff;">
+            ✨ Готово! Теперь интернет работает без белых списков.
+        </div>
+    </div>
+
+    <div class="support-text">
+        Будут вопросики? Пишите нашей доброй поддержке, указанной в закрепе.
+    </div>
 </div>
 
 </body>
 </html>
-
