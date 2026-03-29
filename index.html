@@ -5,79 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hiddify</title>
     
-    <!-- Иконка вкладки -->
     <link rel="icon" type="image/png" href="./logo1.png">
     
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <style>
-        :root {
-            /* Новая темно-синяя палитра Material You */
-            --m3-surface: #111318; /* Глубокий темный фон */
-            --m3-surface-container: #1e2025; /* Карточки */
-            --m3-primary: #a8c7ff; /* Светло-синий акцент */
-            --m3-on-primary: #002f66; /* Текст на кнопках */
-            --m3-on-surface: #e2e2e6; /* Основной текст */
-            --m3-outline: #8e9199;
-        }
-
+        /* ПОЛНОСТЬЮ НОВАЯ СИНЯЯ ПАЛИТРА */
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: var(--m3-surface);
-            color: var(--m3-on-surface);
-            margin: 0; padding: 0; 
-            display: flex; justify-content: center;
+            background-color: #000000; /* Чистый черный фон */
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
             min-height: 100vh;
         }
 
-        .container { max-width: 480px; width: 100%; padding: 24px; }
-
-        header { 
-            margin-top: 50px; margin-bottom: 40px; 
-            display: flex; flex-direction: column; align-items: center; gap: 20px; 
+        .container {
+            max-width: 480px;
+            width: 100%;
+            padding: 24px;
         }
 
-        /* Лого с тенью и адаптивным скруглением */
-        .logo { 
-            width: 100px; height: 100px; 
-            object-fit: contain; 
-            border-radius: 28px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); /* Выраженная тень */
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        header {
+            margin-top: 50px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
 
-        h1 { 
-            font-size: 32px; font-weight: 500; margin: 0; 
-            letter-spacing: 0.5px; color: var(--m3-primary); 
+        /* ЛОГОТИП С ЖИРНОЙ СИНЕЙ ТЕНЬЮ */
+        .logo {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4); /* Синяя тень */
+            border: 2px solid #0055ff;
         }
 
-        .list { display: flex; flex-direction: column; gap: 14px; }
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0;
+            color: #0084ff; /* Ярко-синий заголовок */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* КАРТОЧКИ В ТЕМНО-СИНЕМ СТИЛЕ */
         .item {
-            background-color: var(--m3-surface-container);
-            border-radius: 24px; padding: 20px 24px;
-            display: flex; justify-content: space-between; align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: #1a1a1a;
+            border-radius: 20px;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #333;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
             transition: all 0.2s ease;
         }
 
-        /* Эффект при нажатии на карточку */
-        .item:active { transform: scale(0.96); background-color: #2a2d35; }
-
-        .label { font-size: 15px; font-weight: 500; color: var(--m3-on-surface); }
-
-        /* Кнопки в стиле Material 3 (Filled Tonal) */
-        .btn {
-            background-color: var(--m3-primary);
-            color: var(--m3-on-primary);
-            text-decoration: none;
-            padding: 12px 28px; 
-            border-radius: 100px; /* Полностью круглые кнопки M3 */
-            font-size: 14px; font-weight: 700;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transition: box-shadow 0.2s;
+        .item:active {
+            transform: scale(0.95);
+            background-color: #252525;
         }
 
-        .btn:hover { box-shadow: 0 6px 16px rgba(168, 199, 255, 0.3); }
+        .label {
+            font-size: 15px;
+            font-weight: 500;
+            color: #e0e0e0;
+        }
+
+        /* КНОПКИ: ЯРКО-СИНИЙ ЦВЕТ */
+        .btn {
+            background-color: #0066ff; /* Кнопка синяя */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3); /* Тень кнопки */
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #0052cc;
+            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -91,30 +115,31 @@
     <div class="list">
         <div class="item">
             <span class="label">Rus Mobile 1</span>
-            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
+            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">ИМПОРТ</a>
         </div>
 
         <div class="item">
             <span class="label">Rus Mobile 2</span>
-            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
+            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">ИМПОРТ</a>
         </div>
 
         <div class="item">
             <span class="label">WHITE-CIDR-RU-all</span>
-            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
+            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">ИМПОРТ</a>
         </div>
 
         <div class="item">
             <span class="label">WHITE-CIDR-RU-checked</span>
-            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
+            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">ИМПОРТ</a>
         </div>
 
         <div class="item">
             <span class="label">WHITE-SNI-RU-all</span>
-            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a>
+            <a href="hiddify://import/https://raw.githubusercontent.com" class="btn">ИМПОРТ</a>
         </div>
     </div>
 </div>
 
 </body>
 </html>
+
