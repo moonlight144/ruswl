@@ -3,121 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Storage Services</title>
+    <title>Storage Services</title>
+    <link rel="icon" type="image/png" href="./logo1.png">
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
     <style>
-        /* Стиль заглушки для ботов */
-        body { 
-            background: #0a0a0a; 
-            color: #333; 
-            font-family: 'Segoe UI', sans-serif; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            margin: 0; 
-            overflow: hidden; 
-        }
-        #loader { 
-            text-align: center;
-            font-size: 13px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
+        :root { --m3-surface: #000; --m3-primary: #0066ff; --m3-secondary: #00c2ff; }
+        body { font-family: 'Roboto', sans-serif; background-color: #000; color: #e2e2e6; margin: 0; display: flex; justify-content: center; min-height: 100vh; overflow-x: hidden; position: relative; }
+        
+        /* Анимация Win11 */
+        .bg-blur { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; filter: blur(90px); }
+        .blob { position: absolute; border-radius: 50%; opacity: 0.4; mix-blend-mode: screen; animation: win11-flow 14s infinite alternate ease-in-out; }
+        .blob-1 { width: 90%; height: 90%; background: radial-gradient(circle, var(--m3-primary) 0%, transparent 70%); top: -20%; left: -10%; }
+        .blob-2 { width: 85%; height: 85%; background: radial-gradient(circle, var(--m3-secondary) 0%, transparent 75%); bottom: -15%; right: -10%; animation-delay: -3s; }
+        @keyframes win11-flow { 0% { transform: translate(0,0) scale(1); border-radius: 40% 60% 70% 30%; } 100% { transform: translate(5%, 5%) scale(1.1); border-radius: 30% 60% 30% 70%; } }
+
+        .container { position: relative; z-index: 10; max-width: 480px; width: 100%; padding: 24px; }
+        header { margin-top: 40px; text-align: center; margin-bottom: 30px; }
+        .logo { width: 100px; height: 100px; border-radius: 50px; border: 2px solid var(--m3-primary); box-shadow: 0 0 30px var(--m3-primary); }
+        
+        .instruction-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.1); border-radius: 28px; padding: 24px; margin-bottom: 20px; }
+        .step { font-size: 14px; margin-bottom: 12px; color: #c4c6cf; line-height: 1.5; }
+        .step b { color: #fff; }
+
+        /* Список который появится сам */
+        #dynamic-list { display: flex; flex-direction: column; gap: 12px; min-height: 100px; }
+        .item { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border-radius: 20px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.1); }
+        .btn { background: var(--m3-primary); color: #fff; text-decoration: none; padding: 8px 16px; border-radius: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+        .label { font-size: 13px; color: #fff; max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     </style>
 </head>
 <body>
 
-    <div id="loader">Загрузка защищенных компонентов...</div>
+    <div class="bg-blur">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <img src="./logo.png" class="logo">
+            <h1 style="color:var(--m3-primary); margin: 15px 0 0;">Hiddify</h1>
+        </header>
+
+        <div class="instruction-card">
+            <h2 style="margin-top:0; color:var(--m3-primary); font-size:18px;">Инструкция</h2>
+            <div class="step">1️⃣ <b>Установка:</b> Скачай Hiddify.</div>
+            <div class="step">2️⃣ <b>Настройка:</b> Включи <b>Ограничение памяти</b>, <b>Xray-core</b> и <b>Блок рекламы</b> в настройках.</div>
+            <div class="step">3️⃣ <b>Импорт:</b> Жми синюю кнопку ниже.</div>
+        </div>
+
+        <!-- Сюда скрипт вставит ссылки -->
+        <div id="dynamic-list">
+            <div style="text-align:center; color:#555; font-size:12px;">Проверка безопасности...</div>
+        </div>
+
+        <footer style="text-align:center; padding: 30px; font-size:11px; color:rgba(255,255,255,0.2);">
+            Protected by Security Systems
+        </footer>
+    </div>
 
     <script>
-        // Проверка на поисковых ботов
-        const ua = navigator.userAgent.toLowerCase();
-        const isBot = /bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex/i.test(ua);
+        // Кодируем только список (чтобы не ломать весь сайт)
+        // В переменной 'data' — HTML список в Base64
+        const data = "PGRpdiBjbGFzcz0iaXRlbSI+PHNwYW4gY2xhc3M9ImxhYmVsIj5LcmwgTW9iaWxlIDE8L3NwYW4+PGEgaHJlZj0iaGlkZGlmeTovL2ltcG9ydC9odHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vS2lyaWxsbzRrbS9lYXZldnBuLWNvbmZpZ3MvcmVmcy9oZWFkcy9tYWluL1ZsZXNzLVJlYWxpdHktV2hpdGUtTGlzdHMtUnVzLU1vYmlsZS50eHQiIGNsYXNzPSJidG4iPtCY0LzQv9C_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+S3JsIE1vYmlsZSAyPC9zcGFuPjxhIGhyZWY9ImhpZGRpZnk6Ly9pbXBvcnQvaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0tpcmlsbG80a20vZWF2ZXZwbi1jb25maWdzL3JlZnMvaGVhZHMvbWFpbi9WbGVzcy1SZWFsaXR5LVdoaXRlLUxpc3RzLVJ1cy1Nb2JpbGUtMi50eHQiIGNsYXNzPSJidG4iPtCY0LzQv9C_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+Q0lEUiBSVSBBbGw8L3NwYW4+PGEgaHJlZj0iaGlkZGlmeTovL2ltcG9ydC9odHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vS2lyaWxsbzRrbS9lYXZldnBuLWNvbmZpZ3MvcmVmcy9oZWFkcy9tYWluL1dISVRFLUNJRFItUlUtYWxsLnR4dCIgY2xhc3M9ImJ0biI+0JjQvNC_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+Qmxha2xpc3QgV0xSVVM8L3NwYW4+PGEgaHJlZj0iaGlkZGlmeTovL2ltcG9ydC9odHRwczovL3dscnVzLmxvbC9jb25mcy9ibGFja2wudHh0IiBjbGFzcz0iYnRuIj7QuNC80L_QvtGA0YI8L2E+PC9kaXY+PGRpdiBjbGFzcz0iaXRlbSI+PHNwYW4gY2xhc3M9ImxhYmVsIj5Lml6eYWsgQmV0YSA2PC9zcGFuPjxhIGhyZWY9ImhpZGRpZnk6Ly9pbXBvcnQvaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL01hc2trb3N0OTMva2l6eWFrLXZwbi00LjAvcmVmcy9oZWFkcy9tYWluL2tpenlha2JldGE2LnR4dCIgY2xhc3M9ImJ0biI+0JjQvNC_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+QWxsZXkgWW91VHViZTwvc3Bhbj4+YSBocmVmPSJoaWRkaWZ5Oi8vaW1wb3J0L2h0dHBzOi8vYWxsZXkuc2VydjAwLm5ldC95b3V0dWJlIiBjbGFzcz0iYnRuIj7QuNC80L_QvtGA0YI8L2E+PC9kaXY+";
 
-        // Функция "Распаковки" сайта для реального пользователя
-        function unlock() {
-            if (isBot) return; // Бот не увидит контент
+        function showList() {
+            const list = document.getElementById('dynamic-list');
+            const ua = navigator.userAgent.toLowerCase();
+            // Если зашел бот - оставляем заглушку
+            if (/bot|google|yandex|baidu|bing/i.test(ua)) return;
 
-            // Твой полный код со всеми ссылками и Win11 анимацией в зашифрованном виде
-            const payload = "PCFET0NUWVBFIGh0bWw+PGh0bWwgbGFuZz0icnUiPjxoZWFkPjxtZXRhIGNoYXJzZXQ9IlVURi04Ij48bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBp" +
-            "bml0aWFsLXNjYWxlPTEuMCI+PHRpdGxlPkhpZGRpZnkgUHJlbWl1bTwvdGl0bGU+PGxpbmsgaHJlZj0iaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1Sb2JvdG86d2dodEA0MDA7NTAw" +
-            "OzcwMCZkaXNwbGF5PXN3YXAiIHJlbD0ic3R5bGVzaGVldCI+PHN0eWxlPjpyb290e3--bTMtc3VyZmFjZTojMDAwO--bTMtcHJpbWFyeTojMDA2NmZmOy0tbTMtc2Vjb25kYXJ5OiMwMGMyZmY7LS1tMy1vbi1z" +
-            "dXJmYWNlOiNlMmUyZTY7fWJvZHl7Zm9udC1mYW1pbHk6J1JvYm90bycsc2Fucy1zZXJpZjtiYWNrZ3JvdW5kLWNvbG9yOiMwMDA7Y29sb3I6dmFyKC0tbTMtb24tc3VyZmFjZSk7bWFyZ2luOjA7cGFkZGluZzow" +
-            "O2Rpc3BsYXk6ZmxleDtqdXN0aWZ5LWNvbnRlbnQ6Y2VudGVyO21pbi1oZWlnaHQ6MTAwdmg7b3ZlcmZsb3cteDpoaWRkZW47cG9zaXRpb246cmVsYXRpdmU7fS5iZy1ibHVye3Bvc2l0aW9uOmZpeGVkO3RvcDow" +
-            "O2xlZnQ6MDt3aWR0aDoxMDB2dztoZWlnaHQ6MTAwdmg7ei1pbmRleDotMTtiYWNrZ3JvdW5kOiMwMDA7ZmlsdGVyOmJsdXIoOTBweCk7fS5ibG9ie3Bvc2l0aW9uOmFic29sdXRlO2JvcmRlci1yYWRpdXM6NTAl" +
-            "O29wYWNpdHk6MC41O21peC1ibGVuZC1tb2RlOnNjcmVlbjthbmltYXRpb246d2luMTEtZmxvdyAxNHMgaW5maW5pdGUgYWx0ZXJuYXRlIGVhc2UtaW4tb3V0O30uYmxvYi0xe3dpZHRoOjkwJTtoZWlnaHQ6OTAl" +
-            "O2JhY2tncm91bmQ6cmFkaWFsLWdyYWRpZW50KGNpcmNsZSx2YXIoLS1tMy1wcmltYXJ5KSAwJSx0cmFuc3BhcmVudCA3MCUpO3RvcDotMjAlO2xlZnQ6LTEwJTthbmltYXRpb24tZHVyYXRpb246MTFzO30uYmxv" +
-            "Yi0ye3dpZHRoOjg1JTtoZWlnaHQ6ODUlO2JhY2tncm91bmQ6cmFkaWFsLWdyYWRpZW50KGNpcmNsZSx2YXIoLS1tMy1zZWNvbmRhcnkpIDAlLHRyYW5zcGFyZW50IDc1JSk7Ym90dG9tOi0xNSU7cmlnaHQ6LTEw" +
-            "JTthbmltYXRpb24tZHVyYXRpb246MTZzO2FuaW1hdGlvbi1kZWxheTotM3M7fS5ibG9iLTN7d2lkdGg6NzAlO2hlaWdodDo3MCU7YmFja2dyb3VuZDpyYWRpYWwtZ3JhZGllbnQoY2lyY2xlLCM0ZjAwZmYgMCUs" +
-            "dHJhbnNwYXJlbnQgNzAlKTt0b3A6MTUlO3JpZ2h0Oi0xNSU7YW5pbWF0aW9uLWR1cmF0aW9uOjEzczthbmltYXRpb24tZGVsYXk6LTZzO31Aa2V5ZnJhbWVzIHdpbjExLWZsb3d7MCV7dHJhbnNmb3JtOnRyYW5z" +
-            "bGF0ZSgwLDApIHNjYWxlKDEpIHJvdGF0ZShkZWcpO2JvcmRlci1yYWRpdXM6NDAlIDYwJSA3MCUgMzAlLzQwJSA1MCUgNjAlIDUwJTt9MzMle3RyYW5zZm9ybTp0cmFuc2xhdGUoMTIlLDglKSBzY2FsZSgxLjEp" +
-            "IHJvdGF0ZSgxMGRlZyk7Ym9yZGVyLXJhZGl1czo2MCUgNDAlIDMwJSA3MCUvNTAlIDMwJSA3MCUgNTAlO302NiV7dHJhbnNmb3JtOnRyYW5zbGF0ZSgtOCUsMTUlKSBzY2FsZSgwLjkpIHJvdGF0ZSgtMTVkZWcp" +
-            "O2JvcmRlci1yYWRpdXM6MzAlIDYwJSA3MCUgNDAlLzUwJSA2MCUgMzAlIDQwJTt9MTAwJXt0cmFuc2Zvcm06dHJhbnNsYXRlKDAsMCkgc2NhbGUoMSkgcm90YXRlKDBkZWcpO2JvcmRlci1yYWRpdXM6NDAlIDYw" +
-            "JSA3MCUgMzAlLzQwJSA1MCUgNjAlIDUwJTt9fS5jb250YWluZXJ7cG9zaXRpb246cmVsYXRpdmU7ei1pbmRleDoxMDttYXgtd2lkdGg6NDgwcHg7d2lkdGg6MTAwJTtwYWRkaW5nOjI0cHg7fWhlYWRlcnttYXJn" +
-            "aW4tdG9wOjUwcHg7bWFyZ2luLWJvdHRvbTo0MHB4O2Rpc3BsYXk6ZmxleDtmbGV4LWRpcmVjdGlvbjpjb2x1bW47YWxpZ24taXRlbXM6Y2VudGVyO2dhcDoyMHB4O30ubG9nby13cmFwcGVye3Bvc2l0aW9uOnJl" +
-            "bGF0aXZlO3dpZHRoOjEwMHB4O2hlaWdodDoxMDBweDt9LmxvZ297d2lkdGg6MTAwcHg7aGVpZ2h0OjEwMHB4O29iamVjdC1maXQ6Y292ZXI7Ym9yZGVyLXJhZGl1czo1MHB4O2JveC1zaGFkb3c6MCAwIDM1cHgg" +
-            "cmdiYSgwLDEwMiwyNTUsMC45KTtib3JkZXI6MnB4IHNvbGlkIHZhcigtLW0zLXByaW1hcnkpO31oMXtmb250LXNpemU6MzZweDtmb250LXdlaWdodDo1MDA7bWFyZ2luOjA7bGV0dGVyLXNwYWNpbmc6MC41cHg7" +
-            "Y29sb3I6dmFyKC0tbTMtcHJpbWFyeSk7fS5pbnN0cnVjdGlvbi1jYXJkLC5pdGVte2JhY2tncm91bmQ6cmdiYSgyNTUsMjU1LDI1NSwwLjA1KSAhaW1wb3J0YW50O2JhY2tkcm9wLWZpbHRlcjpibHVyKDMwcHgp" +
-            "IHNhdHVyYXRlKDE3MCUpO2JvcmRlcjoxcHggc29saWQgcmdiYSgyNTUsMjU1LDI1NSwwLjEyKTt9Lmluc3RydWN0aW9uLWNhcmR7Ym9yZGVyLXJhZGl1czoyOHB4O3BhZGRpbmc6MjRweDttYXJnaW4tYm90dG9t" +
-            "OjMwcHg7fS5pbnN0cnVjdGlvbi1jYXJkIGgye21hcmdpbi10b3A6MDtmb250LXNpemU6MjBweDtjb2xvcjp2YXIoLS1tMy1wcmltYXJ5KTt9LnN0ZXB7Zm9udC1zaXplOjE0cHg7bGluZS1oZWlnaHQ6MS42O21h" +
-            "cmdpbi1ib3R0b206MTZweDtjb2xvcjojYzRjNmNmO30uc3RlcCBie2NvbG9yOiNmZmY7fS5saXN0e2Rpc3BsYXk6ZmxleDtmbGV4LWRpcmVjdGlvbjpjb2x1bW47Z2FwOjEycHg7fS5pdGVte2JvcmRlci1yYWRp" +
-            "dXM6MjRweDtwYWRkaW5nOjE4cHggMjRweDtkaXNwbGF5OmZsZXg7anVzdGlmeS1jb250ZW50OnNwYWNlLWJldHdlZW47YWxpZ24taXRlbXM6Y2VudGVyO30ubGFiZWx7Zm9udC1zaXplOjEzcHg7Zm9udC13ZWln" +
-            "aHQ6NTAwO2NvbG9yOiNmZmY7bWF4LXdpZHRoOjYwJTtvdmVyc2xvdzpoaWRkZW47dGV4dC1vdmVyZmxvdzplbGxpcHNpczt3aGl0ZS1zcGFjZTpub3dyYXA7fS5idG57YmFja2dyb3VuZC1jb2xvcjp2YXIoLS1t" +
-            "My1wcmltYXJ5KTtjb2xvcjojZmZmO3RleHQtZGVjb3JhdGlvbjpub25lO3BhZGRpbmc6MTBweCAxOHB4O2JvcmRlci1yYWRpdXM6MTRweDtmb250LXNpemU6MTFweDtmb250LXdlaWdodDo3MDA7dGV4dC10cmFu" +
-            "c2Zvcm06dXBwZXJjYXNlO2JveC1zaGFkb3c6MCA1cHggMTVweCByZ2JhKDAsMTAyLDI1NSwwLjMpO31mb290ZXt0ZXh0LWFsaWduOmNlbnRlcjtwYWRkaW5nOjQwcHggMDtmb250LXNpemU6MTJweDtjb2xvcjpy" +
-            "Z2JhKDI1NSwyNTUsMjU1LDAuMyk7fTwvc3R5bGU+PC9oZWFkPjxib2R5PjxkaXYgY2xhc3M9ImJnLWJsdXIiPjxkaXYgY2xhc3M9ImJsb2IgYmxvYi0xIj48L2Rpdj48ZGl2IGNsYXNzPSJibG9iIGJsb2ItMiI+" +
-            "PC9kaXY+PGRpdiBjbGFzcz0iYmxvYiBibG9iLTMiPjwvZGl2PjwvZGl2PjxkaXYgY2xhc3M9ImNvbnRhaW5lciI+PGhlYWRlcj48ZGl2IGNsYXNzPSJsb2dvLXdyYXBwZXIiPjxpbWcgc3JjPSIuL2xvZ28ucG5n" +
-            "IiBhbHQ9IkhpZGRpZnkiIGNsYXNzPSJsb2dvIj48L2Rpdj48aDE+SGlkZGlmeTwvaDE+PC9oZWFkZXI+PGRpdiBjbGFzcz0iaW5zdHJ1Y3Rpb24tY2FyZCI+PGgyPtCY0L3RgdGC0YDRg9C60YbQuNGPPC9oMj48" +
-            "ZGl2IGNsYXNzPSJzdGVwIj4x77iPIDxiPtCj0YHRgtCw0L3QvtCy0LrQsDo8L2I+INCh0LrQsNGH0LjQstCw0LXQvCDQv9GA0LjQu9C+0LbQtdC90LQuZSA8Yj5IaWRkaWZ5PC9iPi48L2Rpdj48ZGl2IGNsYXNz" +
-            "PSJzdGVwIj4y77iPIDxiPtCf0LXRgNCy0LjRh9C90LDRjyDQndCw0YHRgtGA0L7QudC60LAg0L_QvtGB0LvQtSDQt9Cw0L_Rg9GB0LrQsCBIaWRkaWZ5OjwvYj48YnI+4oCiINCd0LDRgdGC0YDRvtC50LrQuCAt" +
-            "INCe0LHRidC40LUgLSA8Yj7QntCz0YDQsNC90LjRh9C10L3QuNC1INC_0LDQvNGP0YLQuDwvYj4gLSDQktC60LvRjtGH0LjRgtGMLDxicj7igKog0J3QsNdist0YDQvtC50LrQuCAtINCe0LHRidC40LUgLSA8" +
-            "Yj7QmNGB0L_QvtC70YzQt9C+0LLQsNGC0YwgWHJheS1jb3JlPC9iPiAtINCS0LrQu9GO0YfQuNGC0YwsPGJyPuKAqiDQndCw0YHRgtGA0L7QudC60NCgLSDQnNCw0YDRiNGA0YPRgtC40LfQsNGG0QuRIC0gPGI+" +
-            "0JHQu9C+0LrQuNGA0L7QstCw0YLRjCDRgNC10LrQu9Cw0LzRgzwvYj4gLSDQktC60LvRjtGH0LjRgtGMPC9kaXY+PGRpdiBjbGFzcz0ic3RlcCI+M--4jyA8Yj7QmtC+0L3RhNC40LM6PC9iPiDQndCw0LbQvNC4" +
-            "0YLQtSA8Yj4i0JjQnNCf0J7QoNCiIjwvYj4g0L_QvtC0INC70Y7QsdGL0Lwg0YHQv9C40YHQutC+0Lwg0L3QuNC20LUuPC9kaXY+PGRpdiBjbGFzcz0ic3RlcCI+N--4jyA8Yj7Ql9Cw0L_Rg9GB0LrQsDo8L2I+" +
-            "INCd0LDQttC80LjRgtC1IDxi旅客0J_QvtC00LrQu9GO0YfQuNGC0YzRgdGPPC9iPiDQuCDQstGL0LHQtdGA0LjRgtC1INGB0LXRgNCy0LXRgIDxiPmxvd2VzdDwvYj4uPC9kaXY+PC9kaXY+PGRpdiBjbGFzcz0i" +
-            "bGlzdCI+PGRpdiBjbGFzcz0iaXRlbSI+PHNwYW4gY2xhc3M9ImxhYmVsIj5LcmwgTW9iaWxlIDE8L3NwYW4+PGEgaHJlZj0iaGlkZGlmeTovL2ltcG9ydC9odHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5j" +
-            "b20vS2lyaWxsbzRrbS9lYXZldnBuLWNvbmZpZ3MvcmVmcy9oZWFkcy9tYWluL1ZsZXNzLVJlYWxpdHktV2hpdGUtTGlzdHMtUnVzLU1vYmlsZS50eHQiIGNsYXNzPSJidG4iPtCY0LzQv9C_0L7RgNGCPC9hPjwv" +
-            "ZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+S3JsIE1vYmlsZSAyPC9zcGFuPjxhIGhylZj0iaGlkZGlmeTovL2ltcG9ydC9odHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20v" +
-            "S2lyaWxsbzRrbS9lYXZldnBuLWNvbmZpZ3MvcmVmcy9oZWFkcy9tYWluL1ZsZXNzLVJlYWxpdHktV2hpdGUtTGlzdHMtUnVzLU1vYmlsZS0yLnR4dCIgY2xhc3M9ImJ0biI+0JjQvNC_0L_0L7RgNGCPC9hPjwv" +
-            "ZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+Q0lEUiBSVSBBbGw8L3NwYW4+PGEgaHJlZj0iaGlkZGlmeTovL2ltcG9ydC9odHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20v" +
-            "S2lyaWxsbzRrbS9lYXZldnBuLWNvbmZpZ3MvcmVmcy9oZWFkcy9tYWluL1dISVRFLUNJRFItUlUtYWxsLnR4dCIgY2xhc3M9ImJ0biI+0JjQvNC_0L_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0i" +
-            "PjxzcGFuIGNsYXNzPSJsYWJlbCI+Q0lEUiBDaGVja2VkPC9zcGFuPjxhIGhyZWY9ImhpZGRpZnk6Ly9pbXBvcnQvaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0tpcmlsbG80a20vZWF2ZXZwbi1j" +
-            "b25maWdzL3JlZnMvaGVhZHMvbWFpbi9XSElURS1DSURSLVJVLWNoZWNrZWQudHh0IiBjbGFzcz0iYnRuIj7QuNC80L_QvtGA0YI8L2E+PC9kaXY+PGRpdiBjbGFzcz0iaXRlbSI+PHNwYW4gY2xhc3M9ImxhYmVs" +
-            "Ij5TTkkgUlUgQWxsPC9zcGFuPjxhIGhyZWY9ImhpZGRpZnk6Ly9pbXBvcnQvaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0tpcmlsbG80a20vZWF2ZXZwbi1jb25maWdzL3JlZnMvaGVhZHMvbWFp" +
-            "bi9XSElURS1TTkktUlUtYWxsLnR4dCIgY2xhc3M9ImJ0biI+0JjQvNC_0L_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+R29pZGEgVlBOIDI2PC9zcGFuPjxh" +
-            "IGhyZWY9ImhpZGRpZnk6Ly9pbXBvcnQvaHR0cHM6Ly9naXRodWIuY29tL0F2ZW5Db3Jlcy9nb2lkYS12cG4tY29uZmlncy9yYXcvcmVmcy9oZWFkcy9tYWluL2dpdGh1Ym1pcnJvci8yNi50eHQiIGNsYXNzPSJi" +
-            "dG4iPtCY0LzQv9C_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+SWdhcmVjayBNb2JpbGUgMTwvc3Bhbj4+YSBocmVmPSJoaWRkaWZ5Oi8vaW1wb3J0L2h0dHBz" +
-            "Oi8vcmF3LmdpdGh1YmVzZXJjb250ZW50LmNvbS9pZ2FyZWNrL3Zwbi1jb25maWdzLWZvci1ydXNzaWEvcmVmcy9oZWFkcy9tYWluL1ZsZXNzLVJlYWxpdHktV2hpdGUtTGlzdHMtUnVzLU1vYmlsZS50eHQiIGNs" +
-            "YXNzPSJidG4iPtCY0LzQv9C_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+WmluZWcyIFYtTGl0ZTwvc3Bhbj4+YSBocmVmPSJoaWRkaWZ5Oi8vaW1wb3J0L2h0" +
-            "dHBzOi8vcmF3LmdpdGh1YmVzZXJjb250ZW50LmNvbS96aWVuZzIvd2wvbWFpbi92bGVzc19saXRlLnR4dCIgY2xhc3M9ImJ0biI+0JjQvNC_0L_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxz" +
-            "cGFuIGNsYXNzPSJsYWJlbCI+QmxhY2sgVmxlc3MgUlVTPC9zcGFuPjxhIGhyZWY9ImhpZGRpZnk6Ly9pbXBvcnQvaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0tpcmlsbG80a20vZWF2ZXZwbi1j" +
-            "b25maWdzL3JlZnMvaGVhZHMvbWFpbi9CTEFDS19WTEVTU19SVVMudHh0IiBjbGFzcz0iYnRuIj7QuNC80L_QvtGA0YI8L2E+PC9kaXY+PGRpdiBjbGFzcz0iaXRlbSI+PHNwYW4gY2xhc3M9ImxhYmVsIj5XTHJV" +
-            "UyBCbGFja2xpc3Q8L3NwYW4+PGEgaHJlZj0iaGlkZGlmeTovL2ltcG9ydC9odHRwczovL3dscnVzLmxvbC9jb25mcy9ibGFja2wudHh0IiBjbGFzcz0iYnRuIj7QuNC80L_QvtGA0YI8L2E+PC9kaXY+PGRpdiBj" +
-            "bGFzcz0iaXRlbSI+PHNwYW4gY2xhc3M9ImxhYmVsIj5LZldMIENvbmZpZzwvc3Bhbj4+YSBocmVmPSJoaWRkaWZ5Oi8vaW1wb3J0L2h0dHBzOi8vcmF3LmdpdGh1YmVzZXJjb250ZW50LmNvbS9wcm9taW5icm8v" +
-            "S2ZXTC9yZWZzL2hlYWRzL21haW4vS2ZXTC50eHQiIGNsYXNzPSJidG4iPtCY0LzQv9C_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+QWlyTGluayBWUE48L3Nw" +
-            "YW4+PGEgaHJlZj0iaGlkZGlmeTovL2ltcG9ydC9odHRwczovL2Fpcmxpbmt2cG4uZ2l0aHViLmlvLzEudHh0IiBjbGFzcz0iYnRuIj7QuNC80L_QvtGA0YI8L2E+PC9kaXY+PGRpdiBjbGFzcz0iaXRlbSI+PHNw" +
-            "YW4gY2xhc3M9ImxhYmVsIj5Lml6eYWsgQmV0YSA2PC9zcGFuPjxhIGhyZWY9ImhpZGRpZnk6Ly9pbXBvcnQvaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL01hc2trb3N0OTMva2l6eWFrLXZwbi00" +
-            "LjAvcmVmcy9oZWFkcy9tYWluL2tpenlha2JldGE2LnR4dCIgY2xhc3M9ImJ0biI+0JjQvNC_0L_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+QWxsZXkgWW91" +
-            "VHViZTwvc3Bhbj4+YSBocmVmPSJoaWRkaWZ5Oi8vaW1wb3J0L2h0dHBzOi8vYWxsZXkuc2VydjAwLm5ldC95b3V0dWJlIiBjbGFzcz0iYnRuIj7QuNC80L_QvtGA0YI8L2E+PC9kaXY+PC9kaXY+PGZvb3Rlcj7Q" +
-            "ktC+0L_RgNC+0YHRiz8g0J_QuNGI0LjRgtC1INC90LDRiNC10Lkg0L_QvtC00LTQtdGA0LbQutC1LjwvZm9vdGVyPjwvZGl2PjwvYm9keT48L2h0bWw+";
-
-            // Распаковка
+            // Если человек - расшифровываем ссылки через 1 секунду
             setTimeout(() => {
-                const doc = document.open("text/html", "replace");
-                doc.write(atob(payload));
-                doc.close();
+                list.innerHTML = atob(data);
             }, 1000);
         }
 
-        // Слушатели для активации (бот не имитирует эти действия)
-        window.addEventListener('mousemove', unlock, {once: true});
-        window.addEventListener('touchstart', unlock, {once: true});
-        window.addEventListener('keydown', unlock, {once: true});
-        
-        // Запасной запуск через 4 секунды (на случай если пользователь просто ждет)
-        setTimeout(unlock, 4000);
+        window.onload = showList;
     </script>
 </body>
 </html>
