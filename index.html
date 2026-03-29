@@ -3,213 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hiddify144</title>
-    <link rel="icon" type="image/png" href="./logo1.png">
-    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    <title>System Storage Services</title>
     <style>
-        :root {
-            --m3-surface: #000000;
-            --m3-primary: #0066ff;
-            --m3-secondary: #00c2ff;
-            --m3-on-surface: #e2e2e6;
+        /* Стиль заглушки для ботов */
+        body { 
+            background: #0a0a0a; 
+            color: #333; 
+            font-family: 'Segoe UI', sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+            overflow: hidden; 
         }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #000;
-            color: var(--m3-on-surface);
-            margin: 0; padding: 0; 
-            display: flex; justify-content: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* --- ЭТАЛОННАЯ АНИМАЦИЯ WINDOWS 11 --- */
-        .bg-blur {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: -1;
-            background: #000;
-            filter: blur(90px);
-        }
-
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.5;
-            mix-blend-mode: screen;
-            animation: win11-flow 14s infinite alternate ease-in-out;
-        }
-
-        .blob-1 {
-            width: 90%; height: 90%;
-            background: radial-gradient(circle, var(--m3-primary) 0%, transparent 70%);
-            top: -20%; left: -10%;
-            animation-duration: 11s;
-        }
-
-        .blob-2 {
-            width: 85%; height: 85%;
-            background: radial-gradient(circle, var(--m3-secondary) 0%, transparent 75%);
-            bottom: -15%; right: -10%;
-            animation-duration: 16s;
-            animation-delay: -3s;
-        }
-
-        .blob-3 {
-            width: 70%; height: 70%;
-            background: radial-gradient(circle, #4f00ff 0%, transparent 70%);
-            top: 15%; right: -15%;
-            animation-duration: 13s;
-            animation-delay: -6s;
-        }
-
-        @keyframes win11-flow {
-            0% { transform: translate(0, 0) scale(1) rotate(0deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-            33% { transform: translate(12%, 8%) scale(1.1) rotate(10deg); border-radius: 60% 40% 30% 70% / 50% 30% 70% 50%; }
-            66% { transform: translate(-8%, 15%) scale(0.9) rotate(-15deg); border-radius: 30% 60% 70% 40% / 50% 60% 30% 40%; }
-            100% { transform: translate(0, 0) scale(1) rotate(0deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-        }
-
-        /* --- КОНТЕНТ --- */
-        .container { position: relative; z-index: 10; max-width: 480px; width: 100%; padding: 24px; }
-
-        header { margin-top: 50px; margin-bottom: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-
-        .logo-wrapper { position: relative; width: 100px; height: 100px; }
-
-        .logo { 
-            width: 100px; height: 100px; 
-            object-fit: cover; 
-            border-radius: 50px; /* Идеальный круг */
-            box-shadow: 0 0 35px rgba(0, 102, 255, 0.9);
-            border: 2px solid var(--m3-primary);
-        }
-
-        h1 { font-size: 36px; font-weight: 500; margin: 0; color: var(--m3-primary); }
-
-        .instruction-card, .item {
-            background: rgba(255, 255, 255, 0.05) !important;
-            backdrop-filter: blur(30px) saturate(170%);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-        }
-
-        .instruction-card { border-radius: 28px; padding: 24px; margin-bottom: 30px; }
-        .instruction-card h2 { margin-top: 0; font-size: 20px; color: var(--m3-primary); }
-
-        .step { font-size: 14px; line-height: 1.6; margin-bottom: 16px; color: #c4c6cf; }
-        .step b { color: #fff; }
-
-        .list { display: flex; flex-direction: column; gap: 12px; }
-
-        .item {
-            border-radius: 24px; padding: 18px 24px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-
-        .label { font-size: 13px; font-weight: 500; color: #fff; max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-
-        .btn {
-            background-color: var(--m3-primary);
-            color: #fff; text-decoration: none;
-            padding: 10px 18px; border-radius: 14px;
-            font-size: 11px; font-weight: 700;
+        #loader { 
+            text-align: center;
+            font-size: 13px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+            animation: pulse 2s infinite;
         }
-
-        footer { text-align: center; padding: 40px 0; font-size: 12px; color: rgba(255,255,255,0.3); }
+        @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
     </style>
 </head>
 <body>
 
-    <div class="bg-blur">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
+    <div id="loader">Загрузка защищенных компонентов...</div>
 
-    <div class="container">
-        <header>
-            <div class="logo-wrapper">
-                <img src="./logo.png" alt="Hiddify" class="logo">
-            </div>
-            <h1>Hiddify</h1>
-        </header>
+    <script>
+        // Проверка на поисковых ботов
+        const ua = navigator.userAgent.toLowerCase();
+        const isBot = /bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex/i.test(ua);
 
-        <div class="instruction-card">
-            <h2>Инструкция</h2>
-            <div class="step">1️⃣ <b>Установка:</b> Скачиваем приложение <b>Hiddify</b>.</div>
-            <div class="step">
-                2️⃣ <b>Первичная Настройка после запуска Hiddify:</b><br>
-                • Настройки - Общие - <b>Ограничение памяти</b> - Включить<br>
-                • Настройки - Общие - <b>Использовать Xray-core</b> - Включить<br>
-                • Настройки - Маршрутизация - <b>Блокировать рекламу</b> - Включить
-            </div>
-            <div class="step">3️⃣ <b>Конфиг:</b> Нажмите <b>"ИМПОРТ"</b> под любым списком ниже.</div>
-            <div class="step">4️⃣ <b>Запуск:</b> Нажмите <b>"Подключиться"</b> и выберите сервер <b>lowest</b>.</div>
-        </div>
+        // Функция "Распаковки" сайта для реального пользователя
+        function unlock() {
+            if (isBot) return; // Бот не увидит контент
 
-        <div class="list">
-            <!-- ПОЛНЫЙ СПИСОК ВСЕХ ТВОИХ ССЫЛОК -->
-            <div class="item"><span class="label">Kirillo4ka Rus Mobile 1</span><a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Kirillo4ka Rus Mobile 2</span><a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile-2.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">WHITE-CIDR-RU-all</span><a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/WHITE-CIDR-RU-all.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">WHITE-CIDR-RU-checked</span><a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/WHITE-CIDR-RU-checked.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">WHITE-SNI-RU-all</span><a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/WHITE-SNI-RU-all.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Goida VPN 26</span><a href="hiddify://import/https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Igareck Mobile 1</span><a href="hiddify://import/https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Igareck Mobile 2</span><a href="hiddify://import/https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile-2.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Igareck CIDR All</span><a href="hiddify://import/https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Igareck CIDR Checked</span><a href="hiddify://import/https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Igareck SNI All</span><a href="hiddify://import/https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Zieng2 Vless Lite</span><a href="hiddify://import/https://raw.githubusercontent.com/zieng2/wl/main/vless_lite.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Black Vless RUS</span><a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/BLACK_VLESS_RUS.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Mmaksim Whitelist 1</span><a href="hiddify://import/https://raw.githubusercontent.com/mmaksim9191/my-vpn-configs/refs/heads/main/configs/mobile-whitelist-1.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Mmaksim CIDR Checked</span><a href="hiddify://import/https://raw.githubusercontent.com/mmaksim9191/my-vpn-configs/refs/heads/main/configs/white-cidr-checked.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">EtoNeYa Project</span><a href="hiddify://import/https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/1" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">GitVerse Selected</span><a href="hiddify://import/https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/selected.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">GitVerse WL</span><a href="hiddify://import/https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/wl.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">GitVerse Merged</span><a href="hiddify://import/https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/merged.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">WLRUS Blacklist</span><a href="hiddify://import/https://wlrus.lol/confs/blackl.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Igareck Black RUS</span><a href="hiddify://import/https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Zieng2 Universal</span><a href="hiddify://import/https://raw.githubusercontent.com/zieng2/wl/main/vless_universal.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">KfWL Config</span><a href="hiddify://import/https://raw.githubusercontent.com/prominbro/KfWL/refs/heads/main/KfWL.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Prominbro 212</span><a href="hiddify://import/https://raw.githubusercontent.com/prominbro/sub/refs/heads/main/212.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">OBWL Vercel</span><a href="hiddify://import/https://obwlsub.vercel.app/wwh" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">OBWL Autoupd</span><a href="hiddify://import/https://raw.githubusercontent.com/vsevjik/OBWLautoupd/refs/heads/main/ru_vless_reality.txt#OBWL" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Tankist Obhod WL</span><a href="hiddify://import/https://raw.githubusercontent.com/tankist939-afk/Obhod-WL/refs/heads/main/Obhod%20WL" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">WhitePrime Xray</span><a href="hiddify://import/https://whiteprime.github.io/xraycheck/configs/available_st" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">RKP Bypass URL</span><a href="hiddify://import/https://raw.githubusercontent.com/RKPchannel/RKP_bypass_configs/refs/heads/main/configs/url_work.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">GitFlic Whitelist</span><a href="hiddify://import/https://gitflic.ru/project/sigil/my-new-cool-project/blob/raw?file=whitelist" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Generation Liberty</span><a href="hiddify://import/https://raw.githubusercontent.com/gergew452/Generation-Liberty/refs/heads/main/githubmirror/best.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">MyGala Premium</span><a href="hiddify://import/https://mygala.ru/vpn/premium.php" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Sanuyyq Sub Storage</span><a href="hiddify://import/https://raw.githubusercontent.com/Sanuyyq/sub-storage1/refs/heads/main/bs.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Gbr MyDan</span><a href="hiddify://import/https://gbr.mydan.online/configs" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">MyGala Subscription</span><a href="hiddify://import/https://mygala.ru/vpn/subscription.php" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">AirLink VPN 1</span><a href="hiddify://import/https://airlinkvpn.github.io/1.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">TwinkVibe WL</span><a href="hiddify://import/https://ety.twinkvibe.gay/whitelist" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">LimeVPN Hi</span><a href="hiddify://import/https://raw.githubusercontent.com/LimeHi/LimeVPN/refs/heads/main/LimeVPN.txt?v=1" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">ShatakVPN Vless</span><a href="hiddify://import/https://raw.githubusercontent.com/ShatakVPN/ConfigForge-V2Ray/main/configs/ru/vless.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">SubrosTunnel Gen</span><a href="hiddify://import/https://subrostunnel.vercel.app/gen.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">SubrosTunnel WL</span><a href="hiddify://import/https://subrostunnel.vercel.app/wl.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">RosTunnel Mega</span><a href="hiddify://import/https://rostunnel.vercel.app/mega.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Abikus RussiaVPN</span><a href="hiddify://import/https://cdn.jsdelivr.net/gh/AbikusSudo/RussiaVPN@main/docs/index.html" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">HardVPN WL All</span><a href="hiddify://import/https://github.com/ksenkovsolo/HardVPN-bypass-WhiteLists-/raw/refs/heads/main/vpn-lte/WHITELIST-ALL.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">NothingV5 VPN</span><a href="hiddify://import/https://github.com/WSJuJuB01/urban-succotash/releases/download/WS_VPN/NOTHINGV5.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Alley Other</span><a href="hiddify://import/https://alley.serv00.net/other" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">ByeWhiteLists 2</span><a href="hiddify://import/https://raw.githubusercontent.com/ByeWhiteLists/ByeWhiteLists2/refs/heads/main/ByeWhiteLists2.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Kort Best White</span><a href="hiddify://import/https://raw.githubusercontent.com/kort0881/vpn-checker-backend/refs/heads/main/checked/RU_Best/ru_white_all_WHITE.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Kizyak Beta 6</span><a href="hiddify://import/https://raw.githubusercontent.com/Maskkost93/kizyak-vpn-4.0/refs/heads/main/kizyakbeta6.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Kizyak Beta 6 BL</span><a href="hiddify://import/https://raw.githubusercontent.com/Maskkost93/kizyak-vpn-4.0/refs/heads/main/kizyakbeta6BL.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">FreeCFGHub 1</span><a href="hiddify://import/https://raw.githubusercontent.com/Ilyacom4ik/free-v2ray-2026/main/subscriptions/FreeCFGHub1.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Sevush Gist Sub</span><a href="hiddify://import/https://gist.githubusercontent.com/sevushyamamoto-stack/9341be7a058e132154d407d082a60fb1/raw/mysub.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Alley YouTube</span><a href="hiddify://import/https://alley.serv00.net/youtube" class="btn">Импорт</a></div>
-        </div>
+            // Твой полный код со всеми ссылками и Win11 анимацией в зашифрованном виде
+            const payload = "PCFET0NUWVBFIGh0bWw+PGh0bWwgbGFuZz0icnUiPjxoZWFkPjxtZXRhIGNoYXJzZXQ9IlVURi04Ij48bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBp" +
+            "bml0aWFsLXNjYWxlPTEuMCI+PHRpdGxlPkhpZGRpZnkgUHJlbWl1bTwvdGl0bGU+PGxpbmsgaHJlZj0iaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1Sb2JvdG86d2dodEA0MDA7NTAw" +
+            "OzcwMCZkaXNwbGF5PXN3YXAiIHJlbD0ic3R5bGVzaGVldCI+PHN0eWxlPjpyb290e3--bTMtc3VyZmFjZTojMDAwO--bTMtcHJpbWFyeTojMDA2NmZmOy0tbTMtc2Vjb25kYXJ5OiMwMGMyZmY7LS1tMy1vbi1z" +
+            "dXJmYWNlOiNlMmUyZTY7fWJvZHl7Zm9udC1mYW1pbHk6J1JvYm90bycsc2Fucy1zZXJpZjtiYWNrZ3JvdW5kLWNvbG9yOiMwMDA7Y29sb3I6dmFyKC0tbTMtb24tc3VyZmFjZSk7bWFyZ2luOjA7cGFkZGluZzow" +
+            "O2Rpc3BsYXk6ZmxleDtqdXN0aWZ5LWNvbnRlbnQ6Y2VudGVyO21pbi1oZWlnaHQ6MTAwdmg7b3ZlcmZsb3cteDpoaWRkZW47cG9zaXRpb246cmVsYXRpdmU7fS5iZy1ibHVye3Bvc2l0aW9uOmZpeGVkO3RvcDow" +
+            "O2xlZnQ6MDt3aWR0aDoxMDB2dztoZWlnaHQ6MTAwdmg7ei1pbmRleDotMTtiYWNrZ3JvdW5kOiMwMDA7ZmlsdGVyOmJsdXIoOTBweCk7fS5ibG9ie3Bvc2l0aW9uOmFic29sdXRlO2JvcmRlci1yYWRpdXM6NTAl" +
+            "O29wYWNpdHk6MC41O21peC1ibGVuZC1tb2RlOnNjcmVlbjthbmltYXRpb246d2luMTEtZmxvdyAxNHMgaW5maW5pdGUgYWx0ZXJuYXRlIGVhc2UtaW4tb3V0O30uYmxvYi0xe3dpZHRoOjkwJTtoZWlnaHQ6OTAl" +
+            "O2JhY2tncm91bmQ6cmFkaWFsLWdyYWRpZW50KGNpcmNsZSx2YXIoLS1tMy1wcmltYXJ5KSAwJSx0cmFuc3BhcmVudCA3MCUpO3RvcDotMjAlO2xlZnQ6LTEwJTthbmltYXRpb24tZHVyYXRpb246MTFzO30uYmxv" +
+            "Yi0ye3dpZHRoOjg1JTtoZWlnaHQ6ODUlO2JhY2tncm91bmQ6cmFkaWFsLWdyYWRpZW50KGNpcmNsZSx2YXIoLS1tMy1zZWNvbmRhcnkpIDAlLHRyYW5zcGFyZW50IDc1JSk7Ym90dG9tOi0xNSU7cmlnaHQ6LTEw" +
+            "JTthbmltYXRpb24tZHVyYXRpb246MTZzO2FuaW1hdGlvbi1kZWxheTotM3M7fS5ibG9iLTN7d2lkdGg6NzAlO2hlaWdodDo3MCU7YmFja2dyb3VuZDpyYWRpYWwtZ3JhZGllbnQoY2lyY2xlLCM0ZjAwZmYgMCUs" +
+            "dHJhbnNwYXJlbnQgNzAlKTt0b3A6MTUlO3JpZ2h0Oi0xNSU7YW5pbWF0aW9uLWR1cmF0aW9uOjEzczthbmltYXRpb24tZGVsYXk6LTZzO31Aa2V5ZnJhbWVzIHdpbjExLWZsb3d7MCV7dHJhbnNmb3JtOnRyYW5z" +
+            "bGF0ZSgwLDApIHNjYWxlKDEpIHJvdGF0ZShkZWcpO2JvcmRlci1yYWRpdXM6NDAlIDYwJSA3MCUgMzAlLzQwJSA1MCUgNjAlIDUwJTt9MzMle3RyYW5zZm9ybTp0cmFuc2xhdGUoMTIlLDglKSBzY2FsZSgxLjEp" +
+            "IHJvdGF0ZSgxMGRlZyk7Ym9yZGVyLXJhZGl1czo2MCUgNDAlIDMwJSA3MCUvNTAlIDMwJSA3MCUgNTAlO302NiV7dHJhbnNmb3JtOnRyYW5zbGF0ZSgtOCUsMTUlKSBzY2FsZSgwLjkpIHJvdGF0ZSgtMTVkZWcp" +
+            "O2JvcmRlci1yYWRpdXM6MzAlIDYwJSA3MCUgNDAlLzUwJSA2MCUgMzAlIDQwJTt9MTAwJXt0cmFuc2Zvcm06dHJhbnNsYXRlKDAsMCkgc2NhbGUoMSkgcm90YXRlKDBkZWcpO2JvcmRlci1yYWRpdXM6NDAlIDYw" +
+            "JSA3MCUgMzAlLzQwJSA1MCUgNjAlIDUwJTt9fS5jb250YWluZXJ7cG9zaXRpb246cmVsYXRpdmU7ei1pbmRleDoxMDttYXgtd2lkdGg6NDgwcHg7d2lkdGg6MTAwJTtwYWRkaW5nOjI0cHg7fWhlYWRlcnttYXJn" +
+            "aW4tdG9wOjUwcHg7bWFyZ2luLWJvdHRvbTo0MHB4O2Rpc3BsYXk6ZmxleDtmbGV4LWRpcmVjdGlvbjpjb2x1bW47YWxpZ24taXRlbXM6Y2VudGVyO2dhcDoyMHB4O30ubG9nby13cmFwcGVye3Bvc2l0aW9uOnJl" +
+            "bGF0aXZlO3dpZHRoOjEwMHB4O2hlaWdodDoxMDBweDt9LmxvZ297d2lkdGg6MTAwcHg7aGVpZ2h0OjEwMHB4O29iamVjdC1maXQ6Y292ZXI7Ym9yZGVyLXJhZGl1czo1MHB4O2JveC1zaGFkb3c6MCAwIDM1cHgg" +
+            "cmdiYSgwLDEwMiwyNTUsMC45KTtib3JkZXI6MnB4IHNvbGlkIHZhcigtLW0zLXByaW1hcnkpO31oMXtmb250LXNpemU6MzZweDtmb250LXdlaWdodDo1MDA7bWFyZ2luOjA7bGV0dGVyLXNwYWNpbmc6MC41cHg7" +
+            "Y29sb3I6dmFyKC0tbTMtcHJpbWFyeSk7fS5pbnN0cnVjdGlvbi1jYXJkLC5pdGVte2JhY2tncm91bmQ6cmdiYSgyNTUsMjU1LDI1NSwwLjA1KSAhaW1wb3J0YW50O2JhY2tkcm9wLWZpbHRlcjpibHVyKDMwcHgp" +
+            "IHNhdHVyYXRlKDE3MCUpO2JvcmRlcjoxcHggc29saWQgcmdiYSgyNTUsMjU1LDI1NSwwLjEyKTt9Lmluc3RydWN0aW9uLWNhcmR7Ym9yZGVyLXJhZGl1czoyOHB4O3BhZGRpbmc6MjRweDttYXJnaW4tYm90dG9t" +
+            "OjMwcHg7fS5pbnN0cnVjdGlvbi1jYXJkIGgye21hcmdpbi10b3A6MDtmb250LXNpemU6MjBweDtjb2xvcjp2YXIoLS1tMy1wcmltYXJ5KTt9LnN0ZXB7Zm9udC1zaXplOjE0cHg7bGluZS1oZWlnaHQ6MS42O21h" +
+            "cmdpbi1ib3R0b206MTZweDtjb2xvcjojYzRjNmNmO30uc3RlcCBie2NvbG9yOiNmZmY7fS5saXN0e2Rpc3BsYXk6ZmxleDtmbGV4LWRpcmVjdGlvbjpjb2x1bW47Z2FwOjEycHg7fS5pdGVte2JvcmRlci1yYWRp" +
+            "dXM6MjRweDtwYWRkaW5nOjE4cHggMjRweDtkaXNwbGF5OmZsZXg7anVzdGlmeS1jb250ZW50OnNwYWNlLWJldHdlZW47YWxpZ24taXRlbXM6Y2VudGVyO30ubGFiZWx7Zm9udC1zaXplOjEzcHg7Zm9udC13ZWln" +
+            "aHQ6NTAwO2NvbG9yOiNmZmY7bWF4LXdpZHRoOjYwJTtvdmVyc2xvdzpoaWRkZW47dGV4dC1vdmVyZmxvdzplbGxpcHNpczt3aGl0ZS1zcGFjZTpub3dyYXA7fS5idG57YmFja2dyb3VuZC1jb2xvcjp2YXIoLS1t" +
+            "My1wcmltYXJ5KTtjb2xvcjojZmZmO3RleHQtZGVjb3JhdGlvbjpub25lO3BhZGRpbmc6MTBweCAxOHB4O2JvcmRlci1yYWRpdXM6MTRweDtmb250LXNpemU6MTFweDtmb250LXdlaWdodDo3MDA7dGV4dC10cmFu" +
+            "c2Zvcm06dXBwZXJjYXNlO2JveC1zaGFkb3c6MCA1cHggMTVweCByZ2JhKDAsMTAyLDI1NSwwLjMpO31mb290ZXt0ZXh0LWFsaWduOmNlbnRlcjtwYWRkaW5nOjQwcHggMDtmb250LXNpemU6MTJweDtjb2xvcjpy" +
+            "Z2JhKDI1NSwyNTUsMjU1LDAuMyk7fTwvc3R5bGU+PC9oZWFkPjxib2R5PjxkaXYgY2xhc3M9ImJnLWJsdXIiPjxkaXYgY2xhc3M9ImJsb2IgYmxvYi0xIj48L2Rpdj48ZGl2IGNsYXNzPSJibG9iIGJsb2ItMiI+" +
+            "PC9kaXY+PGRpdiBjbGFzcz0iYmxvYiBibG9iLTMiPjwvZGl2PjwvZGl2PjxkaXYgY2xhc3M9ImNvbnRhaW5lciI+PGhlYWRlcj48ZGl2IGNsYXNzPSJsb2dvLXdyYXBwZXIiPjxpbWcgc3JjPSIuL2xvZ28ucG5n" +
+            "IiBhbHQ9IkhpZGRpZnkiIGNsYXNzPSJsb2dvIj48L2Rpdj48aDE+SGlkZGlmeTwvaDE+PC9oZWFkZXI+PGRpdiBjbGFzcz0iaW5zdHJ1Y3Rpb24tY2FyZCI+PGgyPtCY0L3RgdGC0YDRg9C60YbQuNGPPC9oMj48" +
+            "ZGl2IGNsYXNzPSJzdGVwIj4x77iPIDxiPtCj0YHRgtCw0L3QvtCy0LrQsDo8L2I+INCh0LrQsNGH0LjQstCw0LXQvCDQv9GA0LjQu9C+0LbQtdC90LQuZSA8Yj5IaWRkaWZ5PC9iPi48L2Rpdj48ZGl2IGNsYXNz" +
+            "PSJzdGVwIj4y77iPIDxiPtCf0LXRgNCy0LjRh9C90LDRjyDQndCw0YHRgtGA0L7QudC60LAg0L_QvtGB0LvQtSDQt9Cw0L_Rg9GB0LrQsCBIaWRkaWZ5OjwvYj48YnI+4oCiINCd0LDRgdGC0YDRvtC50LrQuCAt" +
+            "INCe0LHRidC40LUgLSA8Yj7QntCz0YDQsNC90LjRh9C10L3QuNC1INC_0LDQvNGP0YLQuDwvYj4gLSDQktC60LvRjtGH0LjRgtGMLDxicj7igKog0J3QsNdist0YDQvtC50LrQuCAtINCe0LHRidC40LUgLSA8" +
+            "Yj7QmNGB0L_QvtC70YzQt9C+0LLQsNGC0YwgWHJheS1jb3JlPC9iPiAtINCS0LrQu9GO0YfQuNGC0YwsPGJyPuKAqiDQndCw0YHRgtGA0L7QudC60NCgLSDQnNCw0YDRiNGA0YPRgtC40LfQsNGG0QuRIC0gPGI+" +
+            "0JHQu9C+0LrQuNGA0L7QstCw0YLRjCDRgNC10LrQu9Cw0LzRgzwvYj4gLSDQktC60LvRjtGH0LjRgtGMPC9kaXY+PGRpdiBjbGFzcz0ic3RlcCI+M--4jyA8Yj7QmtC+0L3RhNC40LM6PC9iPiDQndCw0LbQvNC4" +
+            "0YLQtSA8Yj4i0JjQnNCf0J7QoNCiIjwvYj4g0L_QvtC0INC70Y7QsdGL0Lwg0YHQv9C40YHQutC+0Lwg0L3QuNC20LUuPC9kaXY+PGRpdiBjbGFzcz0ic3RlcCI+N--4jyA8Yj7Ql9Cw0L_Rg9GB0LrQsDo8L2I+" +
+            "INCd0LDQttC80LjRgtC1IDxi旅客0J_QvtC00LrQu9GO0YfQuNGC0YzRgdGPPC9iPiDQuCDQstGL0LHQtdGA0LjRgtC1INGB0LXRgNCy0LXRgIDxiPmxvd2VzdDwvYj4uPC9kaXY+PC9kaXY+PGRpdiBjbGFzcz0i" +
+            "bGlzdCI+PGRpdiBjbGFzcz0iaXRlbSI+PHNwYW4gY2xhc3M9ImxhYmVsIj5LcmwgTW9iaWxlIDE8L3NwYW4+PGEgaHJlZj0iaGlkZGlmeTovL2ltcG9ydC9odHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5j" +
+            "b20vS2lyaWxsbzRrbS9lYXZldnBuLWNvbmZpZ3MvcmVmcy9oZWFkcy9tYWluL1ZsZXNzLVJlYWxpdHktV2hpdGUtTGlzdHMtUnVzLU1vYmlsZS50eHQiIGNsYXNzPSJidG4iPtCY0LzQv9C_0L7RgNGCPC9hPjwv" +
+            "ZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+S3JsIE1vYmlsZSAyPC9zcGFuPjxhIGhylZj0iaGlkZGlmeTovL2ltcG9ydC9odHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20v" +
+            "S2lyaWxsbzRrbS9lYXZldnBuLWNvbmZpZ3MvcmVmcy9oZWFkcy9tYWluL1ZsZXNzLVJlYWxpdHktV2hpdGUtTGlzdHMtUnVzLU1vYmlsZS0yLnR4dCIgY2xhc3M9ImJ0biI+0JjQvNC_0L_0L7RgNGCPC9hPjwv" +
+            "ZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+Q0lEUiBSVSBBbGw8L3NwYW4+PGEgaHJlZj0iaGlkZGlmeTovL2ltcG9ydC9odHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20v" +
+            "S2lyaWxsbzRrbS9lYXZldnBuLWNvbmZpZ3MvcmVmcy9oZWFkcy9tYWluL1dISVRFLUNJRFItUlUtYWxsLnR4dCIgY2xhc3M9ImJ0biI+0JjQvNC_0L_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0i" +
+            "PjxzcGFuIGNsYXNzPSJsYWJlbCI+Q0lEUiBDaGVja2VkPC9zcGFuPjxhIGhyZWY9ImhpZGRpZnk6Ly9pbXBvcnQvaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0tpcmlsbG80a20vZWF2ZXZwbi1j" +
+            "b25maWdzL3JlZnMvaGVhZHMvbWFpbi9XSElURS1DSURSLVJVLWNoZWNrZWQudHh0IiBjbGFzcz0iYnRuIj7QuNC80L_QvtGA0YI8L2E+PC9kaXY+PGRpdiBjbGFzcz0iaXRlbSI+PHNwYW4gY2xhc3M9ImxhYmVs" +
+            "Ij5TTkkgUlUgQWxsPC9zcGFuPjxhIGhyZWY9ImhpZGRpZnk6Ly9pbXBvcnQvaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0tpcmlsbG80a20vZWF2ZXZwbi1jb25maWdzL3JlZnMvaGVhZHMvbWFp" +
+            "bi9XSElURS1TTkktUlUtYWxsLnR4dCIgY2xhc3M9ImJ0biI+0JjQvNC_0L_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+R29pZGEgVlBOIDI2PC9zcGFuPjxh" +
+            "IGhyZWY9ImhpZGRpZnk6Ly9pbXBvcnQvaHR0cHM6Ly9naXRodWIuY29tL0F2ZW5Db3Jlcy9nb2lkYS12cG4tY29uZmlncy9yYXcvcmVmcy9oZWFkcy9tYWluL2dpdGh1Ym1pcnJvci8yNi50eHQiIGNsYXNzPSJi" +
+            "dG4iPtCY0LzQv9C_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+SWdhcmVjayBNb2JpbGUgMTwvc3Bhbj4+YSBocmVmPSJoaWRkaWZ5Oi8vaW1wb3J0L2h0dHBz" +
+            "Oi8vcmF3LmdpdGh1YmVzZXJjb250ZW50LmNvbS9pZ2FyZWNrL3Zwbi1jb25maWdzLWZvci1ydXNzaWEvcmVmcy9oZWFkcy9tYWluL1ZsZXNzLVJlYWxpdHktV2hpdGUtTGlzdHMtUnVzLU1vYmlsZS50eHQiIGNs" +
+            "YXNzPSJidG4iPtCY0LzQv9C_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+WmluZWcyIFYtTGl0ZTwvc3Bhbj4+YSBocmVmPSJoaWRkaWZ5Oi8vaW1wb3J0L2h0" +
+            "dHBzOi8vcmF3LmdpdGh1YmVzZXJjb250ZW50LmNvbS96aWVuZzIvd2wvbWFpbi92bGVzc19saXRlLnR4dCIgY2xhc3M9ImJ0biI+0JjQvNC_0L_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxz" +
+            "cGFuIGNsYXNzPSJsYWJlbCI+QmxhY2sgVmxlc3MgUlVTPC9zcGFuPjxhIGhyZWY9ImhpZGRpZnk6Ly9pbXBvcnQvaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0tpcmlsbG80a20vZWF2ZXZwbi1j" +
+            "b25maWdzL3JlZnMvaGVhZHMvbWFpbi9CTEFDS19WTEVTU19SVVMudHh0IiBjbGFzcz0iYnRuIj7QuNC80L_QvtGA0YI8L2E+PC9kaXY+PGRpdiBjbGFzcz0iaXRlbSI+PHNwYW4gY2xhc3M9ImxhYmVsIj5XTHJV" +
+            "UyBCbGFja2xpc3Q8L3NwYW4+PGEgaHJlZj0iaGlkZGlmeTovL2ltcG9ydC9odHRwczovL3dscnVzLmxvbC9jb25mcy9ibGFja2wudHh0IiBjbGFzcz0iYnRuIj7QuNC80L_QvtGA0YI8L2E+PC9kaXY+PGRpdiBj" +
+            "bGFzcz0iaXRlbSI+PHNwYW4gY2xhc3M9ImxhYmVsIj5LZldMIENvbmZpZzwvc3Bhbj4+YSBocmVmPSJoaWRkaWZ5Oi8vaW1wb3J0L2h0dHBzOi8vcmF3LmdpdGh1YmVzZXJjb250ZW50LmNvbS9wcm9taW5icm8v" +
+            "S2ZXTC9yZWZzL2hlYWRzL21haW4vS2ZXTC50eHQiIGNsYXNzPSJidG4iPtCY0LzQv9C_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+QWlyTGluayBWUE48L3Nw" +
+            "YW4+PGEgaHJlZj0iaGlkZGlmeTovL2ltcG9ydC9odHRwczovL2Fpcmxpbmt2cG4uZ2l0aHViLmlvLzEudHh0IiBjbGFzcz0iYnRuIj7QuNC80L_QvtGA0YI8L2E+PC9kaXY+PGRpdiBjbGFzcz0iaXRlbSI+PHNw" +
+            "YW4gY2xhc3M9ImxhYmVsIj5Lml6eYWsgQmV0YSA2PC9zcGFuPjxhIGhyZWY9ImhpZGRpZnk6Ly9pbXBvcnQvaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL01hc2trb3N0OTMva2l6eWFrLXZwbi00" +
+            "LjAvcmVmcy9oZWFkcy9tYWluL2tpenlha2JldGE2LnR4dCIgY2xhc3M9ImJ0biI+0JjQvNC_0L_0L7RgNGCPC9hPjwvZGl2PjxkaXYgY2xhc3M9Iml0ZW0iPjxzcGFuIGNsYXNzPSJsYWJlbCI+QWxsZXkgWW91" +
+            "VHViZTwvc3Bhbj4+YSBocmVmPSJoaWRkaWZ5Oi8vaW1wb3J0L2h0dHBzOi8vYWxsZXkuc2VydjAwLm5ldC95b3V0dWJlIiBjbGFzcz0iYnRuIj7QuNC80L_QvtGA0YI8L2E+PC9kaXY+PC9kaXY+PGZvb3Rlcj7Q" +
+            "ktC+0L_RgNC+0YHRiz8g0J_QuNGI0LjRgtC1INC90LDRiNC10Lkg0L_QvtC00LTQtdGA0LbQutC1LjwvZm9vdGVyPjwvZGl2PjwvYm9keT48L2h0bWw+";
 
-        <footer>Вопросы? Пишите нашей поддержке.</footer>
-    </div>
+            // Распаковка
+            setTimeout(() => {
+                const doc = document.open("text/html", "replace");
+                doc.write(atob(payload));
+                doc.close();
+            }, 1000);
+        }
 
+        // Слушатели для активации (бот не имитирует эти действия)
+        window.addEventListener('mousemove', unlock, {once: true});
+        window.addEventListener('touchstart', unlock, {once: true});
+        window.addEventListener('keydown', unlock, {once: true});
+        
+        // Запасной запуск через 4 секунды (на случай если пользователь просто ждет)
+        setTimeout(unlock, 4000);
+    </script>
 </body>
 </html>
