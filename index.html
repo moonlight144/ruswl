@@ -22,104 +22,106 @@
             display: flex; justify-content: center;
             min-height: 100vh;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* --- ЭТАЛОННАЯ АНИМАЦИЯ WINDOWS 11 --- */
+        /* Анимация Windows 11 Flow */
         .bg-blur {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: -1;
-            background: #000;
             filter: blur(90px);
+            background: #000;
         }
-
         .blob {
             position: absolute;
             border-radius: 50%;
-            opacity: 0.5;
+            opacity: 0.4;
             mix-blend-mode: screen;
-            animation: win11-flow 14s infinite alternate ease-in-out;
+            animation: win11-flow 15s infinite alternate ease-in-out;
+        }
+        .blob-1 { width: 80%; height: 80%; background: radial-gradient(circle, var(--m3-primary) 0%, transparent 70%); top: -10%; left: -10%; }
+        .blob-2 { width: 70%; height: 70%; background: radial-gradient(circle, var(--m3-secondary) 0%, transparent 70%); bottom: -10%; right: -10%; animation-delay: -4s; }
+        @keyframes win11-flow { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(10%, 10%) scale(1.1); } }
+
+        .container { 
+            position: relative;
+            z-index: 10;
+            max-width: 1100px; 
+            width: 100%; 
+            padding: 24px; 
+            box-sizing: border-box;
         }
 
-        .blob-1 {
-            width: 90%; height: 90%;
-            background: radial-gradient(circle, var(--m3-primary) 0%, transparent 70%);
-            top: -20%; left: -10%;
-            animation-duration: 11s;
+        header { 
+            margin-top: 40px; margin-bottom: 30px; 
+            display: flex; flex-direction: column; align-items: center; gap: 15px; 
         }
-
-        .blob-2 {
-            width: 85%; height: 85%;
-            background: radial-gradient(circle, var(--m3-secondary) 0%, transparent 75%);
-            bottom: -15%; right: -10%;
-            animation-duration: 16s;
-            animation-delay: -3s;
-        }
-
-        .blob-3 {
-            width: 70%; height: 70%;
-            background: radial-gradient(circle, #4f00ff 0%, transparent 70%);
-            top: 15%; right: -15%;
-            animation-duration: 13s;
-            animation-delay: -6s;
-        }
-
-        @keyframes win11-flow {
-            0% { transform: translate(0, 0) scale(1) rotate(0deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-            33% { transform: translate(12%, 8%) scale(1.1) rotate(10deg); border-radius: 60% 40% 30% 70% / 50% 30% 70% 50%; }
-            66% { transform: translate(-8%, 15%) scale(0.9) rotate(-15deg); border-radius: 30% 60% 70% 40% / 50% 60% 30% 40%; }
-            100% { transform: translate(0, 0) scale(1) rotate(0deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-        }
-
-        /* --- КОНТЕНТ --- */
-        .container { position: relative; z-index: 10; max-width: 480px; width: 100%; padding: 24px; }
-
-        header { margin-top: 50px; margin-bottom: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-
-        .logo-wrapper { position: relative; width: 100px; height: 100px; }
 
         .logo { 
             width: 100px; height: 100px; 
             object-fit: cover; 
-            border-radius: 50px; /* Идеальный круг */
-            box-shadow: 0 0 35px rgba(0, 102, 255, 0.9);
+            border-radius: 50px;
             border: 2px solid var(--m3-primary);
+            box-shadow: 0 0 30px var(--m3-primary);
         }
 
-        h1 { font-size: 36px; font-weight: 500; margin: 0; color: var(--m3-primary); }
+        h1 { font-size: 36px; color: var(--m3-primary); margin: 0; }
 
-        .instruction-card, .item {
-            background: rgba(255, 255, 255, 0.05) !important;
-            backdrop-filter: blur(30px) saturate(170%);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+        .instruction-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 28px;
+            padding: 24px;
+            margin-bottom: 30px;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .instruction-card { border-radius: 28px; padding: 24px; margin-bottom: 30px; }
         .instruction-card h2 { margin-top: 0; font-size: 20px; color: var(--m3-primary); }
 
-        .step { font-size: 14px; line-height: 1.6; margin-bottom: 16px; color: #c4c6cf; }
+        .step { font-size: 14px; margin-bottom: 16px; color: #c4c6cf; line-height: 1.6; }
         .step b { color: #fff; }
 
-        .list { display: flex; flex-direction: column; gap: 12px; }
+        .list { 
+            display: grid; 
+            grid-template-columns: 1fr;
+            gap: 12px; 
+        }
+
+        @media (min-width: 650px) { .list { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 950px) { .list { grid-template-columns: repeat(3, 1fr); } }
 
         .item {
-            border-radius: 24px; padding: 18px 24px;
-            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            border-radius: 20px; 
+            padding: 14px 18px;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.2s;
         }
+        .item:active { transform: scale(0.97); }
 
-        .label { font-size: 13px; font-weight: 500; color: #fff; max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .label { font-size: 12px; font-weight: 500; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 10px; }
 
         .btn {
-            background-color: var(--m3-primary);
-            color: #fff; text-decoration: none;
-            padding: 10px 18px; border-radius: 14px;
-            font-size: 11px; font-weight: 700;
+            background: var(--m3-primary);
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 700;
             text-transform: uppercase;
-            box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.2);
         }
 
-        footer { text-align: center; padding: 40px 0; font-size: 12px; color: rgba(255,255,255,0.3); }
+        footer { text-align: center; padding: 40px 0; font-size: 12px; color: rgba(255,255,255,0.2); }
     </style>
 </head>
 <body>
@@ -127,89 +129,90 @@
     <div class="bg-blur">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
     </div>
 
     <div class="container">
         <header>
-            <div class="logo-wrapper">
-                <img src="./logo.png" alt="Hiddify" class="logo">
-            </div>
+            <img src="./logo.png" alt="Hiddify" class="logo">
             <h1>Hiddify</h1>
         </header>
 
         <div class="instruction-card">
             <h2>Инструкция</h2>
-            <div class="step">1️⃣ <b>Установка:</b> Скачиваем приложение <b>Hiddify</b>.</div>
+            <div class="step">
+                1️⃣ <b>Установка:</b> Скачиваем приложение <b>Hiddify</b>. Заходим и выдаем все разрешения.
+            </div>
             <div class="step">
                 2️⃣ <b>Первичная Настройка после запуска Hiddify:</b><br>
-                • Настройки - Общие - <b>Ограничение памяти</b> - Включить<br>
-                • Настройки - Общие - <b>Использовать Xray-core</b> - Включить<br>
-                • Настройки - Маршрутизация - <b>Блокировать рекламу</b> - Включить
+                Настройки - Общие - <b>Ограничение памяти</b> - Включить<br><br>
+                Настройки - Общие - <b>Использовать Xray-core</b> - Включить<br><br>
+                Настройки - Маршрутизация - <b>Блокировать рекламу</b> - Включить
             </div>
-            <div class="step">3️⃣ <b>Конфиг:</b> Нажмите <b>"ИМПОРТ"</b> под любым списком ниже.</div>
-            <div class="step">4️⃣ <b>Запуск:</b> Нажмите <b>"Подключиться"</b> и выберите сервер <b>lowest</b>.</div>
+            <div class="step">
+                3️⃣ <b>Конфиг:</b> Выберите нужный список ниже и нажмите синюю кнопку <b>"ИМПОРТ"</b>.
+            </div>
+            <div class="step">
+                4️⃣ <b>Запуск:</b> Жмем <b>"Подключиться"</b>. Когда появится задержка (мс), жмем на название сервера снизу и выбираем в списке самый верхний — <b>lowest</b>.
+            </div>
         </div>
 
         <div class="list">
-            <!-- ПОЛНЫЙ СПИСОК ВСЕХ ТВОИХ ССЫЛОК -->
-            <div class="item"><span class="label">Kirillo4ka Rus Mobile 1</span><a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Kirillo4ka Rus Mobile 2</span><a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile-2.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">WHITE-CIDR-RU-all</span><a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/WHITE-CIDR-RU-all.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">WHITE-CIDR-RU-checked</span><a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/WHITE-CIDR-RU-checked.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">WHITE-SNI-RU-all</span><a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/WHITE-SNI-RU-all.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Goida VPN 26</span><a href="hiddify://import/https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Igareck Mobile 1</span><a href="hiddify://import/https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Igareck Mobile 2</span><a href="hiddify://import/https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile-2.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Igareck CIDR All</span><a href="hiddify://import/https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Igareck CIDR Checked</span><a href="hiddify://import/https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Igareck SNI All</span><a href="hiddify://import/https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Zieng2 Vless Lite</span><a href="hiddify://import/https://raw.githubusercontent.com/zieng2/wl/main/vless_lite.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Black Vless RUS</span><a href="hiddify://import/https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/BLACK_VLESS_RUS.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Mmaksim Whitelist 1</span><a href="hiddify://import/https://raw.githubusercontent.com/mmaksim9191/my-vpn-configs/refs/heads/main/configs/mobile-whitelist-1.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Mmaksim CIDR Checked</span><a href="hiddify://import/https://raw.githubusercontent.com/mmaksim9191/my-vpn-configs/refs/heads/main/configs/white-cidr-checked.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">EtoNeYa Project</span><a href="hiddify://import/https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/1" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">GitVerse Selected</span><a href="hiddify://import/https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/selected.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">GitVerse WL</span><a href="hiddify://import/https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/wl.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">GitVerse Merged</span><a href="hiddify://import/https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/merged.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">WLRUS Blacklist</span><a href="hiddify://import/https://wlrus.lol/confs/blackl.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Igareck Black RUS</span><a href="hiddify://import/https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Zieng2 Universal</span><a href="hiddify://import/https://raw.githubusercontent.com/zieng2/wl/main/vless_universal.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">KfWL Config</span><a href="hiddify://import/https://raw.githubusercontent.com/prominbro/KfWL/refs/heads/main/KfWL.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Prominbro 212</span><a href="hiddify://import/https://raw.githubusercontent.com/prominbro/sub/refs/heads/main/212.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">OBWL Vercel</span><a href="hiddify://import/https://obwlsub.vercel.app/wwh" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">OBWL Autoupd</span><a href="hiddify://import/https://raw.githubusercontent.com/vsevjik/OBWLautoupd/refs/heads/main/ru_vless_reality.txt#OBWL" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Tankist Obhod WL</span><a href="hiddify://import/https://raw.githubusercontent.com/tankist939-afk/Obhod-WL/refs/heads/main/Obhod%20WL" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">WhitePrime Xray</span><a href="hiddify://import/https://whiteprime.github.io/xraycheck/configs/available_st" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">RKP Bypass URL</span><a href="hiddify://import/https://raw.githubusercontent.com/RKPchannel/RKP_bypass_configs/refs/heads/main/configs/url_work.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">GitFlic Whitelist</span><a href="hiddify://import/https://gitflic.ru/project/sigil/my-new-cool-project/blob/raw?file=whitelist" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Generation Liberty</span><a href="hiddify://import/https://raw.githubusercontent.com/gergew452/Generation-Liberty/refs/heads/main/githubmirror/best.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">MyGala Premium</span><a href="hiddify://import/https://mygala.ru/vpn/premium.php" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Sanuyyq Sub Storage</span><a href="hiddify://import/https://raw.githubusercontent.com/Sanuyyq/sub-storage1/refs/heads/main/bs.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Gbr MyDan</span><a href="hiddify://import/https://gbr.mydan.online/configs" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">MyGala Subscription</span><a href="hiddify://import/https://mygala.ru/vpn/subscription.php" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">AirLink VPN 1</span><a href="hiddify://import/https://airlinkvpn.github.io/1.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">TwinkVibe WL</span><a href="hiddify://import/https://ety.twinkvibe.gay/whitelist" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">LimeVPN Hi</span><a href="hiddify://import/https://raw.githubusercontent.com/LimeHi/LimeVPN/refs/heads/main/LimeVPN.txt?v=1" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">ShatakVPN Vless</span><a href="hiddify://import/https://raw.githubusercontent.com/ShatakVPN/ConfigForge-V2Ray/main/configs/ru/vless.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">SubrosTunnel Gen</span><a href="hiddify://import/https://subrostunnel.vercel.app/gen.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">SubrosTunnel WL</span><a href="hiddify://import/https://subrostunnel.vercel.app/wl.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">RosTunnel Mega</span><a href="hiddify://import/https://rostunnel.vercel.app/mega.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Abikus RussiaVPN</span><a href="hiddify://import/https://cdn.jsdelivr.net/gh/AbikusSudo/RussiaVPN@main/docs/index.html" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">HardVPN WL All</span><a href="hiddify://import/https://github.com/ksenkovsolo/HardVPN-bypass-WhiteLists-/raw/refs/heads/main/vpn-lte/WHITELIST-ALL.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">NothingV5 VPN</span><a href="hiddify://import/https://github.com/WSJuJuB01/urban-succotash/releases/download/WS_VPN/NOTHINGV5.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Alley Other</span><a href="hiddify://import/https://alley.serv00.net/other" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">ByeWhiteLists 2</span><a href="hiddify://import/https://raw.githubusercontent.com/ByeWhiteLists/ByeWhiteLists2/refs/heads/main/ByeWhiteLists2.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Kort Best White</span><a href="hiddify://import/https://raw.githubusercontent.com/kort0881/vpn-checker-backend/refs/heads/main/checked/RU_Best/ru_white_all_WHITE.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Kizyak Beta 6</span><a href="hiddify://import/https://raw.githubusercontent.com/Maskkost93/kizyak-vpn-4.0/refs/heads/main/kizyakbeta6.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Kizyak Beta 6 BL</span><a href="hiddify://import/https://raw.githubusercontent.com/Maskkost93/kizyak-vpn-4.0/refs/heads/main/kizyakbeta6BL.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">FreeCFGHub 1</span><a href="hiddify://import/https://raw.githubusercontent.com/Ilyacom4ik/free-v2ray-2026/main/subscriptions/FreeCFGHub1.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Sevush Gist Sub</span><a href="hiddify://import/https://gist.githubusercontent.com/sevushyamamoto-stack/9341be7a058e132154d407d082a60fb1/raw/mysub.txt" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Alley YouTube</span><a href="hiddify://import/https://alley.serv00.net/youtube" class="btn">Импорт</a></div>
+            <!-- ПОЛНЫЙ СПИСОК ССЫЛОК -->
+            <div class="item"><span class="label">Rus Mobile 1</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Rus Mobile 2</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">WHITE-CIDR-RU-all</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">WHITE-CIDR-RU-checked</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">WHITE-SNI-RU-all</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Goida VPN 26</span><a href="hiddify://import/https://github.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Igareck Mobile 1</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Igareck Mobile 2</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Igareck CIDR All</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Igareck CIDR Checked</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Igareck SNI All</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Zieng2 V-Lite</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Black V-RUS</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Mmaksim WL 1</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Mmaksim CIDR</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">EtoNeYa 1</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">GV Selected</span><a href="hiddify://import/https://gitverse.ru" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">GV WL</span><a href="hiddify://import/https://gitverse.ru" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">GV Merged</span><a href="hiddify://import/https://gitverse.ru" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">WLRUS Black</span><a href="hiddify://import/https://wlrus.lol" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Zieng2 Universal</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">KfWL Main</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Prominbro 212</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">OBWL Vercel</span><a href="hiddify://import/https://obwlsub.vercel.app" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">OBWL Auto-Upd</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Tankist Obhod</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">WhitePrime</span><a href="hiddify://import/https://whiteprime.github.io" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">RKP Bypass</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">GitFlic WL</span><a href="hiddify://import/https://gitflic.ru" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Gen Liberty</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">MyGala Premium</span><a href="hiddify://import/https://mygala.ru" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Sanuyyq Storage</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Gbr MyDan</span><a href="hiddify://import/https://gbr.mydan.online" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">MyGala Subscription</span><a href="hiddify://import/https://mygala.ru" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">AirLink 1</span><a href="hiddify://import/https://airlinkvpn.github.io" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">TwinkVibe</span><a href="hiddify://import/https://ety.twinkvibe.gay" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">LimeVPN</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Shatak Vless</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Subros Gen</span><a href="hiddify://import/https://subrostunnel.vercel.app" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Subros WL</span><a href="hiddify://import/https://subrostunnel.vercel.app" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">RosTunnel</span><a href="hiddify://import/https://rostunnel.vercel.app" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Abikus RU</span><a href="hiddify://import/https://cdn.jsdelivr.net" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">HardVPN WL All</span><a href="hiddify://import/https://github.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">NothingV5</span><a href="hiddify://import/https://github.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Alley Other</span><a href="hiddify://import/https://alley.serv00.net" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">ByeWL 2</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Kort RU White</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Kizyak Beta 6</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Kizyak B6 BL</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">FreeCFGHub 1</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Sevush Gist</span><a href="hiddify://import/https://gist.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Alley YT</span><a href="hiddify://import/https://alley.serv00.net" class="btn">Импорт</a></div>
         </div>
 
-        <footer>Вопросы? Пишите нашей поддержке.</footer>
+        <footer>По всем вопросам пишите в поддержку.</footer>
     </div>
-
 </body>
 </html>
