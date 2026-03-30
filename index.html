@@ -3,45 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ruswl | Hiddify</title>
-    <link rel="icon" type="image/png" href="./logo1.png">
+    <title>Hiddify — Орудие Прогресса</title>
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <style>
         :root {
-            --m3-surface: #000000;
-            --m3-primary: #0066ff;
-            --m3-secondary: #00c2ff;
-            --m3-on-surface: #e2e2e6;
+            --ussr-red: #cc0000;
+            --ussr-gold: #ffcc00;
+            --ussr-dark: #1a0000;
+            --ussr-paper: #e0d7c6;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #000;
-            color: var(--m3-on-surface);
+            font-family: 'Oswald', sans-serif;
+            background-color: var(--ussr-dark);
+            background-image: url('https://www.transparenttextures.com');
+            color: var(--ussr-paper);
             margin: 0; padding: 0; 
             display: flex; justify-content: center;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* Анимация Windows 11 Flow */
-        .bg-blur {
+        /* Атмосферный фон с серпом и молотом на заднем плане */
+        .bg-overlay {
             position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(204, 0, 0, 0.15) 0%, transparent 70%);
             z-index: -1;
-            filter: blur(90px);
-            background: #000;
         }
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.4;
-            mix-blend-mode: screen;
-            animation: win11-flow 15s infinite alternate ease-in-out;
-        }
-        .blob-1 { width: 80%; height: 80%; background: radial-gradient(circle, var(--m3-primary) 0%, transparent 70%); top: -10%; left: -10%; }
-        .blob-2 { width: 70%; height: 70%; background: radial-gradient(circle, var(--m3-secondary) 0%, transparent 70%); bottom: -10%; right: -10%; animation-delay: -4s; }
-        @keyframes win11-flow { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(10%, 10%) scale(1.1); } }
 
         .container { 
             position: relative;
@@ -49,110 +37,155 @@
             max-width: 1100px; 
             width: 100%; 
             padding: 24px; 
-            box-sizing: border-box;
         }
 
         header { 
-            margin-top: 40px; margin-bottom: 30px; 
-            display: flex; flex-direction: column; align-items: center; gap: 15px; 
+            margin-top: 40px; margin-bottom: 40px; 
+            display: flex; flex-direction: column; align-items: center; gap: 10px; 
+            text-align: center;
+        }
+
+        /* Звезда вместо обычного свечения */
+        .logo-box {
+            position: relative;
+            padding: 10px;
+            border: 4px double var(--ussr-gold);
+            background: var(--ussr-red);
         }
 
         .logo { 
             width: 100px; height: 100px; 
             object-fit: cover; 
-            border-radius: 50px;
-            border: 2px solid var(--m3-primary);
-            box-shadow: 0 0 30px var(--m3-primary);
+            filter: grayscale(1) contrast(1.2) sepia(0.5); /* Эффект старого фото */
         }
 
-        h1 { font-size: 36px; color: var(--m3-primary); margin: 0; }
+        h1 { 
+            font-family: 'Ruslan Display', cursive;
+            font-size: 48px; 
+            color: var(--ussr-gold); 
+            margin: 10px 0 0;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 0px var(--ussr-red);
+        }
 
         .instruction-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 28px;
+            background: var(--ussr-red);
+            border: 5px solid var(--ussr-gold);
             padding: 24px;
-            margin-bottom: 30px;
-            max-width: 550px;
+            margin-bottom: 40px;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+            color: white;
         }
 
-        .instruction-card h2 { margin-top: 0; font-size: 20px; color: var(--m3-primary); }
+        .instruction-card h2 { 
+            margin-top: 0; 
+            font-family: 'Ruslan Display', cursive;
+            font-size: 28px; 
+            color: var(--ussr-gold); 
+            border-bottom: 2px solid var(--ussr-gold);
+            padding-bottom: 10px;
+            text-align: center;
+        }
 
-        .step { font-size: 14px; margin-bottom: 16px; color: #c4c6cf; line-height: 1.6; }
-        .step b { color: #fff; }
+        .step { font-size: 16px; margin-bottom: 16px; line-height: 1.4; border-left: 4px solid var(--ussr-gold); padding-left: 15px; }
+        .step b { color: var(--ussr-gold); text-transform: uppercase; }
 
         .list { 
             display: grid; 
             grid-template-columns: 1fr;
-            gap: 12px; 
+            gap: 15px; 
         }
 
         @media (min-width: 650px) { .list { grid-template-columns: repeat(2, 1fr); } }
         @media (min-width: 950px) { .list { grid-template-columns: repeat(3, 1fr); } }
 
         .item {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(20px);
-            border-radius: 20px; 
-            padding: 14px 18px;
+            background: #2b2b2b;
+            border: 2px solid var(--ussr-red);
+            padding: 15px;
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.2s;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
         }
-        .item:active { transform: scale(0.97); }
 
-        .label { font-size: 12px; font-weight: 500; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 10px; }
+        .item::before {
+            content: "★";
+            position: absolute;
+            left: -5px; top: -5px;
+            color: var(--ussr-red);
+            font-size: 20px;
+            opacity: 0.5;
+        }
+
+        .item:hover { 
+            background: var(--ussr-red);
+            border-color: var(--ussr-gold);
+        }
+
+        .label { font-size: 14px; font-weight: 700; color: var(--ussr-gold); text-transform: uppercase; }
+        .item:hover .label { color: white; }
 
         .btn {
-            background: var(--m3-primary);
-            color: #fff;
+            background: var(--ussr-gold);
+            color: var(--ussr-dark);
             text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-size: 10px;
+            padding: 8px 15px;
             font-weight: 700;
             text-transform: uppercase;
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.2);
+            border: 2px solid var(--ussr-dark);
+            transition: 0.2s;
         }
 
-        footer { text-align: center; padding: 40px 0; font-size: 12px; color: rgba(255,255,255,0.2); }
+        .btn:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        footer { 
+            text-align: center; 
+            padding: 50px 0; 
+            font-size: 14px; 
+            color: var(--ussr-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
 
-    <div class="bg-blur">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-    </div>
+    <div class="bg-overlay"></div>
 
     <div class="container">
         <header>
-            <img src="./logo.png" alt="Hiddify" class="logo">
-            <h1>ruswl</h1>
+            <div class="logo-box">
+                <img src="./logo.png" alt="Hiddify" class="logo">
+            </div>
+            <h1>Хиддифай</h1>
+            <p style="color: var(--ussr-gold); font-weight: bold;">СВЯЗЬ БЕЗ ГРАНИЦ — ДОЛГ КАЖДОГО ГРАЖДАНИНА!</p>
         </header>
 
         <div class="instruction-card">
-            <h2>Инструкция</h2>
+            <h2>Директива Пользователю</h2>
             <div class="step">
-                1️⃣ <b>Установка:</b> Скачиваем приложение <b>Hiddify</b>. Заходим и выдаем все разрешения.
+                1️⃣ <b>Мобилизация:</b> Установить приложение <b>Hiddify</b>. Обеспечить все доступы согласно протоколу.
             </div>
             <div class="step">
-                2️⃣ <b>Первичная Настройка после запуска Hiddify:</b><br>
-                Настройки - Общие - <b>Ограничение памяти</b> - Включить<br><br>
-                Настройки - Общие - <b>Использовать Xray-core</b> - Включить<br><br>
-                Настройки - Маршрутизация - <b>Блокировать рекламу</b> - Включить
+                2️⃣ <b>Госприемка (Настройка):</b><br>
+                • Параметры - Общие - <b>Ограничение памяти</b> - ВКЛ<br>
+                • Параметры - Общие - <b>Использовать Xray-core</b> - ВКЛ<br>
+                • Параметры - Маршрутизация - <b>Блокировать рекламу</b> - ВКЛ
             </div>
             <div class="step">
-                3️⃣ <b>Конфиг:</b> Выберите нужный ниже и нажмите синюю кнопку <b>"ИМПОРТ"</b>.
+                3️⃣ <b>Пятилетка (Конфиг):</b> Выбрать ресурс из списка и нажать <b>"ИМПОРТ"</b>.
             </div>
             <div class="step">
-                4️⃣ <b>Запуск:</b> Жмём <b>"Подключиться"</b>. Когда появится задержка (мс), жмём на название сервера снизу и выбираем в списке самый верхний — <b>lowest</b>.
+                4️⃣ <b>Пуск:</b> Нажать <b>"Подключиться"</b>. Из списка серверов выбрать кратчайший путь (<b>lowest</b>).
             </div>
         </div>
 
@@ -160,14 +193,14 @@
             <!-- ПОЛНЫЙ СПИСОК ССЫЛОК -->
             <div class="item"><span class="label">Rus Mobile 1</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
             <div class="item"><span class="label">Rus Mobile 2</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">WHITE-CIDR-RU-all</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">WHITE-CIDR-RU-checked</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">WHITE-SNI-RU-all</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">WHITE-CIDR-RU</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">WHITE-CIDR-CHECK</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">WHITE-SNI-RU</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
             <div class="item"><span class="label">Goida VPN 26</span><a href="hiddify://import/https://github.com" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Igareck Mobile 1</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Igareck Mobile 2</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Igareck Mob 1</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Igareck Mob 2</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
             <div class="item"><span class="label">Igareck CIDR All</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Igareck CIDR Checked</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Igareck CIDR Check</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
             <div class="item"><span class="label">Igareck SNI All</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
             <div class="item"><span class="label">Zieng2 V-Lite</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
             <div class="item"><span class="label">Black V-RUS</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
@@ -189,22 +222,22 @@
             <div class="item"><span class="label">GitFlic WL</span><a href="hiddify://import/https://gitflic.ru" class="btn">Импорт</a></div>
             <div class="item"><span class="label">Gen Liberty</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
             <div class="item"><span class="label">MyGala Premium</span><a href="hiddify://import/https://mygala.ru" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Sanuyyq Storage</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Sanuyyq BS</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
             <div class="item"><span class="label">Gbr MyDan</span><a href="hiddify://import/https://gbr.mydan.online" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">MyGala Subscription</span><a href="hiddify://import/https://mygala.ru" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">MyGala Sub</span><a href="hiddify://import/https://mygala.ru" class="btn">Импорт</a></div>
             <div class="item"><span class="label">AirLink 1</span><a href="hiddify://import/https://airlinkvpn.github.io" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">TwinkVibe</span><a href="hiddify://import/https://ety.twinkvibe.gay" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">TwinkVibe WL</span><a href="hiddify://import/https://ety.twinkvibe.gay" class="btn">Импорт</a></div>
             <div class="item"><span class="label">LimeVPN</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
             <div class="item"><span class="label">Shatak Vless</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
             <div class="item"><span class="label">Subros Gen</span><a href="hiddify://import/https://subrostunnel.vercel.app" class="btn">Импорт</a></div>
             <div class="item"><span class="label">Subros WL</span><a href="hiddify://import/https://subrostunnel.vercel.app" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">RosTunnel</span><a href="hiddify://import/https://rostunnel.vercel.app" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">RosTunnel Mega</span><a href="hiddify://import/https://rostunnel.vercel.app" class="btn">Импорт</a></div>
             <div class="item"><span class="label">Abikus RU</span><a href="hiddify://import/https://cdn.jsdelivr.net" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">HardVPN WL All</span><a href="hiddify://import/https://github.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">HardVPN All</span><a href="hiddify://import/https://github.com" class="btn">Импорт</a></div>
             <div class="item"><span class="label">NothingV5</span><a href="hiddify://import/https://github.com" class="btn">Импорт</a></div>
             <div class="item"><span class="label">Alley Other</span><a href="hiddify://import/https://alley.serv00.net" class="btn">Импорт</a></div>
             <div class="item"><span class="label">ByeWL 2</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
-            <div class="item"><span class="label">Kort RU White</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
+            <div class="item"><span class="label">Kort Best White</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
             <div class="item"><span class="label">Kizyak Beta 6</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
             <div class="item"><span class="label">Kizyak B6 BL</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
             <div class="item"><span class="label">FreeCFGHub 1</span><a href="hiddify://import/https://raw.githubusercontent.com" class="btn">Импорт</a></div>
@@ -212,5 +245,7 @@
             <div class="item"><span class="label">Alley YT</span><a href="hiddify://import/https://alley.serv00.net" class="btn">Импорт</a></div>
         </div>
 
+        <footer>ПРОЛЕТАРИИ ВСЕХ СТРАН, СОЕДИНЯЙТЕСЬ!</footer>
+    </div>
 </body>
 </html>
